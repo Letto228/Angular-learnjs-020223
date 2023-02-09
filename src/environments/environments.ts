@@ -1,3 +1,3 @@
 export const environment = {
-    prod: false,
+	prod: false,
 };
