@@ -26,7 +26,20 @@
 						"prefix": "app",
 						"style": "kebab-case"
 					}
-				]
+				],
+				"@typescript-eslint/naming-convention": [
+					"warn",
+					{
+						"selector": "enum",
+						"format": ["UPPER_CASE"]
+					}
+				],
+				"@typescript-eslint/interface-name-prefix": "always",
+				"@typescript-eslint/no-use-before-define": "off",
+				"arrow-parens": "error",
+				"no-unused-expressions": "off",
+				"no-param-reassign": "warn",
+				"no-unused-vars": "warn"
 			}
 		},
 		{
