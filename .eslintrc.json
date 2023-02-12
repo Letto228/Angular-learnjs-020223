@@ -4,6 +4,9 @@
 	"overrides": [
 		{
 			"files": ["*.ts"],
+			"parserOptions": {
+				"project": ["tsconfig.json"]
+			},
 			"extends": [
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
@@ -26,7 +29,33 @@
 						"prefix": "app",
 						"style": "kebab-case"
 					}
-				]
+				],
+				"@typescript-eslint/naming-convention": [
+					"warn",
+					{
+						"selector": ["function", "parameter"],
+						"format": ["camelCase", "PascalCase", "snake_case"]
+					},
+					{
+						"selector": "memberLike",
+						"modifiers": ["private"],
+						"format": ["camelCase"],
+						"leadingUnderscore": "require"
+					},
+					{
+						"selector": "typeLike",
+						"format": ["PascalCase"]
+					},
+					{
+						"selector": "variable",
+						"types": ["boolean"],
+						"format": ["PascalCase"],
+						"prefix": ["is", "should", "has", "can", "did", "will"]
+					}
+				],
+				"no-empty-function": "off",
+				"@typescript-eslint/no-empty-function": "off",
+				"@angular-eslint/no-empty-lifecycle-method": "off"
 			}
 		},
 		{
