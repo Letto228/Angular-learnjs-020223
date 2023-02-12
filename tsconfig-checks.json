@@ -1,0 +1,47 @@
+{
+	"compilerOptions": {
+		// Strict Checks
+		"alwaysStrict": true,
+		//включает добавление строки "use strict" в каждый скомпилированный файл
+		"noImplicitAny": true,
+		//подсвечивает все any
+		"suppressImplicitAnyIndexErrors": true,
+
+		"strictNullChecks": true,
+		//С данным флагом компилятор больше не позволяет передавать undefined или null туда,
+		// где ожидаются переменные других типов, если это не разрешено явно.
+		//  с динамически получаемыми данными могут быть проблемы
+		"strictPropertyInitialization": true,
+		//следит, чтобы объявленные свойства класса всегда были инициализированы
+		//  является своего рода дополнением к флагу strictNullChecks поэтому работает только когда второй флаг тоже включен
+		"strictFunctionTypes": true,
+		//включает более строгую проверку сигнатур функций
+		"noImplicitThis": true,
+		// При использовании this проверяет, что контекст выполнения известен
+		"strictBindCallApply": true,
+		//включает более строгую проверку сигнатур при использовании соответствующих методов: bind, call, apply
+		"forceConsistentCasingInFileNames": true,
+		//Включает режим чувствительности к регистру (case-sensitive) для импорта файлов
+		"declaration": false,
+		//будут генерироваться файлы-аннотации, известные как d.ts-файлы или тайпинги
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		//  запрещает обращаться к свойствам объекта через точку, если свойства объекта описаны не явно,
+		// а через произвольные параметры (arbitrarily-named properties, index signatures).
+		"noImplicitReturns": true,
+		// проверяет, чтобы все ветки функции возвращали значение
+		"noFallthroughCasesInSwitch": true,
+		//проверяет наличие break в операторе switch/case
+		// Заменяется правилом no-fallthrough
+		"noUnusedLocals": true,
+		// наличие неиспользуемых переменных
+		"noUnusedParameters": true,
+		// наличие неиспользуемых аргументов функций и методов
+
+		// по умолчанию эти флаги имеют значение true, однако для строгости должны быть false
+		"allowUnreachableCode": false,
+		// запрещает недосягаемый код – код, написанный после операторов return, throw, break, continue
+		"allowUnusedLabels": false
+		// запрещает неиспользуемые лэйблы
+	}
+}

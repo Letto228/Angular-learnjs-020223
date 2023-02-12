@@ -1,0 +1,31 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+	"compileOnSave": false,
+	// при значении true указывает используемой IDE сгенерировать все файлы js при каждом сохранении файлов TS:
+	"extends": "./tsconfig-checks.json",
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ES2022",
+		"moduleResolution": "node",
+		"lib": ["ES2022", "dom"],
+		"outDir": "./dist/out-tsc",
+		"baseUrl": "./",
+		"paths": {
+			"app/*": ["./src/app/*"],
+			"core/*": ["./src/app/core/*"],
+			"shared/*": ["./src/app/shared/*"]
+		},
+		"sourceMap": true,
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"useDefineForClassFields": false
+	},
+	"angularCompilerOptions": {
+		"compilationMode": "full",
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	}
+}
