@@ -26,6 +26,26 @@
 						"prefix": "app",
 						"style": "kebab-case"
 					}
+				],
+				"eqeqeq": ["error", "smart"],
+				"no-use-before-define": [
+					"error",
+					{
+						"functions": true,
+						"classes": true,
+						"variables": true,
+						"allowNamedExports": false
+					}
+				],
+				"no-duplicate-imports": ["error"],
+				"no-magic-numbers": [
+					"error",
+					{
+						"ignoreClassFieldInitialValues": true,
+						"ignoreArrayIndexes": true,
+						"ignore": [1],
+						"ignoreDefaultValues": true
+					}
 				]
 			}
 		},
