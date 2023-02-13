@@ -4,5 +4,27 @@
 	"tabWidth": 4,
 	"semi": true,
 	"singleQuote": true,
-	"printWidth": 120
+	"printWidth": 120,
+	"arrowParens": "avoid",
+	"attributeGroups": [
+		"$ANGULAR_STRUCTURAL_DIRECTIVE",
+		"$ANGULAR_ELEMENT_REF",
+		"^tui",
+		"$ID",
+		"^automation-id$",
+		"$DEFAULT",
+		"$CLASS",
+		"^\\[class\\.",
+		"$ANGULAR_INPUT",
+		"$ANGULAR_TWO_WAY_BINDING",
+		"$ANGULAR_OUTPUT"
+	],
+	"overrides": [
+		{
+			"files": "*.html",
+			"options": {
+				"printWidth": 80
+			}
+		}
+	]
 }
