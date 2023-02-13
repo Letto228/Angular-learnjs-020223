@@ -1,0 +1,8 @@
+<mat-drawer-container autosize class="example-container">
+	<mat-drawer mode="side" class="example-sidenav" [opened]="isOpened">
+		<p>Auto-resizing sidenav</p>
+	</mat-drawer>
+
+	<app-product-card [products]="products" (buyProduct)="buyProduct($event)">
+	</app-product-card>
+</mat-drawer-container>
