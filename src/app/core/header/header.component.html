@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+	<button
+		mat-icon-button
+		aria-label="Example icon-button with menu icon"
+		class="example-icon"
+		(click)="onClick(); $event.stopPropagation()"
+	>
+		<mat-icon>menu</mat-icon>
+	</button>
+	<img
+		class="logo"
+		[src]="applicationConfig?.shopIconSrc"
+		[style.width.px]="100"
+	/>
+	<span>{{ applicationConfig?.title }}</span>
+	<span class="example-spacer"></span>
+	<button
+		mat-icon-button
+		aria-label="Example icon-button with heart icon"
+		class="example-icon favorite-icon"
+	>
+		<mat-icon>favorite</mat-icon>
+	</button>
+	<button
+		mat-icon-button
+		aria-label="Example icon-button with share icon"
+		class="example-icon"
+	>
+		<mat-icon>share</mat-icon>
+	</button>
+</mat-toolbar>

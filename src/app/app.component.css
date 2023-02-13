@@ -1,0 +1,11 @@
+::ng-deep h1 {
+	color: red;
+}
+
+:host::ng-deep h1 {
+	color: aqua;
+}
+
+h1 {
+	font-size: small;
+}
