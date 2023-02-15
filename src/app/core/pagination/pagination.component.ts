@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-pagination',
