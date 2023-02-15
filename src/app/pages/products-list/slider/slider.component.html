@@ -1,0 +1,11 @@
+<div matTooltip="Когда-нибудь тут будет нормальный слайдер" class="slider">
+	<img alt="Изображение" class="main" [src]="first?.url" />
+	<div class="slides">
+		<img
+			*ngFor="let element of rest"
+			alt="Изображение"
+			class="slide"
+			[src]="element.url"
+		/>
+	</div>
+</div>

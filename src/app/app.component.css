@@ -9,3 +9,9 @@
 h1 {
 	font-size: small;
 }
+
+.example-card-list {
+	display: flex;
+	gap: 16px;
+	padding: 32px;
+}

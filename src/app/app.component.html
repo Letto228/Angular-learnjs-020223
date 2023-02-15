@@ -3,19 +3,10 @@
 	(click)="onClick($event)"
 	(menuClick)="toggleSidenavOpened()"
 ></app-header>
-<!-- <app-sidenav
-    [isOpened]="isSidenavOpened"
-    (isOpenedChange)="isSidenavOpened = $event"
-></app-sidenav> -->
-<h1>Style</h1>
-<app-sidenav [(isOpened)]="isSidenavOpened"></app-sidenav>
-<!-- HeaderComponent.menuClick.subscribe(value => {
-    cb(value);
-}) -->
 
-<!-- <input (keydown.enter)="log($event)">
-
-<h1>Application works</h1>
-<p>{{this.title}}</p>
-<p>{{title}}</p>
-<p>{{window}}</p> -->
+<div class="example-card-list">
+	<app-card
+		[item]="productList[0]"
+		(addToCardEvent)="onAddToCard($event)"
+	></app-card>
+</div>

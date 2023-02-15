@@ -1,0 +1,41 @@
+.card {
+	max-width: 300px;
+}
+
+.card-img-list {
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.card-img {
+	width: 100%;
+	height: 300px;
+}
+
+.card-content {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.card-actions {
+	display: flex;
+	justify-content: space-between;
+}
+
+.price {
+	display: flex;
+	gap: 4px;
+	justify-content: flex-end;
+}
+
+.price h2 {
+	margin: 0;
+}
+
+.price span {
+	color: gray;
+}

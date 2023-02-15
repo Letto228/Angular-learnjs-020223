@@ -1,0 +1,29 @@
+<mat-card class="card" (click)="onCardClick($event)">
+	<mat-card-header>
+		<mat-card-title>{{ item?.name }}</mat-card-title>
+	</mat-card-header>
+
+	<mat-card-content class="card-content">
+		<app-slider [list]="item?.images"></app-slider>
+		<div class="price">
+			<h2>{{ item?.price }}</h2>
+			<span>{{ currency }}</span>
+		</div>
+	</mat-card-content>
+	<mat-card-actions class="card-actions">
+		<mat-icon
+			matBadgeColor="accent"
+			matTooltip="Отзывы о товаре"
+			color="primary"
+			[matBadge]="item?.feedbacksCount"
+			>comment</mat-icon
+		>
+		<button
+			mat-raised-button
+			color="primary"
+			(click)="addToCard($event, item?._id)"
+		>
+			В корзину
+		</button>
+	</mat-card-actions>
+</mat-card>
