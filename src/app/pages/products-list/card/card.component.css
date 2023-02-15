@@ -4,6 +4,10 @@
 }
 
 .example-header-image {
-	background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+	background-image: url('https://www.pngkit.com/png/full/246-2469150_devices-png-mobile-device-icon-png.png');
 	background-size: cover;
+}
+
+.mdc-card__actions {
+	justify-content: space-evenly;
 }
