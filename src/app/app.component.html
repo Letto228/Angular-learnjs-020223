@@ -6,7 +6,8 @@
 
 <div class="example-card-list">
 	<app-card
-		[item]="productList[0]"
+		*ngFor="let product of productList"
+		[item]="product"
 		(addToCardEvent)="onAddToCard($event)"
 	></app-card>
 </div>
