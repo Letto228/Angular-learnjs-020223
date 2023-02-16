@@ -9,6 +9,11 @@
 ></app-sidenav> -->
 <h1>Style</h1>
 <app-sidenav [(isOpened)]="isSidenavOpened"></app-sidenav>
+<app-product-card
+	[productInfo]="productInfo"
+	(buyButtonClick)="addToCart($event)"
+></app-product-card>
+
 <!-- HeaderComponent.menuClick.subscribe(value => {
     cb(value);
 }) -->
