@@ -9,9 +9,7 @@
 	"attributeGroups": [
 		"$ANGULAR_STRUCTURAL_DIRECTIVE",
 		"$ANGULAR_ELEMENT_REF",
-		"^tui",
 		"$ID",
-		"^automation-id$",
 		"$DEFAULT",
 		"$CLASS",
 		"^\\[class\\.",

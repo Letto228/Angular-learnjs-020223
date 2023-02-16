@@ -1,11 +1,22 @@
 <mat-drawer-container autosize class="example-container">
-	<mat-drawer mode="side" class="example-sidenav" [opened]="isOpened">
-		<p>Auto-resizing sidenav</p>
+	<mat-drawer mode="side" class="example-sidenav">
+		<!-- <ng-content select="title"></ng-content> -->
+		<p #p>Auto-resizing sidenav</p>
+		<!-- <ng-container #viewport></ng-container> -->
+		<ng-content select="sidenav"></ng-content>
 	</mat-drawer>
 
-	<div class="example-sidenav-content">
-		<button type="button" mat-button (click)="toggleSidenavOpened()">
+	<div #div class="example-sidenav-content">
+		<ng-content></ng-content>
+		<!-- <input #inputNgModel="ngModel" #inputElement ngModel>
+		{{inputNgModel.value}}
+		{{inputElement.value}} -->
+		<!-- <button
+			type="button"
+			mat-button
+			(click)="toggleSidenavOpened()"
+		>
 			Toggle sidenav
-		</button>
+		</button> -->
 	</div>
 </mat-drawer-container>
