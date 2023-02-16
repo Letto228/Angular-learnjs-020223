@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+	<mat-card-header>
+		<mat-card-title>{{ product?.name }}</mat-card-title>
+		<mat-card-subtitle>{{ product?.subCategory }}</mat-card-subtitle>
+	</mat-card-header>
+	<img
+		mat-card-image
+		alt="Photo of a product"
+		[src]="
+			product
+				? product.images[imageIndex]
+					? product.images[imageIndex].url
+					: ''
+				: ''
+		"
+		(click)="changeImage()"
+	/>
+	<mat-card-content></mat-card-content>
+	<mat-card-actions class="card-actions">
+		<div class="price-content mr2">Price: {{ product?.price }} $</div>
+		<button
+			mat-raised-button
+			color="primary"
+			class="mr2"
+			(click)="clickBuyButton($event)"
+		>
+			Buy
+		</button>
+	</mat-card-actions>
+</mat-card>

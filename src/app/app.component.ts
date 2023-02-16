@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { applicationConfigMock } from './shared/application-config/application-config.mock';
+import { productMock } from './shared/products/product.mock';
 
 @Component({
 	selector: 'app-root',
@@ -17,14 +18,19 @@ export class AppComponent {
 	// readonly window = window;
 	// readonly log = console.log;
 	readonly applicationConfig = applicationConfigMock;
+	readonly product = productMock;
 	isSidenavOpened = true;
+
+	clickBuyProduct(id: string) {
+		console.log('Купили товар ', id);
+	}
 
 	toggleSidenavOpened() {
 		this.isSidenavOpened = !this.isSidenavOpened;
 	}
 
 	onClick(event: MouseEvent) {
-		event.stopPropagation();
+		//event.stopPropagation();
 		console.log('Menu click', event);
 	}
 }
