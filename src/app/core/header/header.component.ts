@@ -7,10 +7,8 @@ import { applicationConfigMock } from '../../shared/application-config/applicati
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.css'],
-	// inputs: ['applicationConfig'],
 })
 export class HeaderComponent {
-	// @Input('config')
 	@Input()
 	applicationConfig: IApplicationConfig | undefined;
 
@@ -18,7 +16,6 @@ export class HeaderComponent {
 	menuClick = new EventEmitter<string>();
 
 	onClick() {
-		// event.stopPropagation();
 		console.log('Menu click');
 		this.menuClick.emit('click');
 	}

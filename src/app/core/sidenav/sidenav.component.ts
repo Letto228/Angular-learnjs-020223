@@ -13,7 +13,6 @@ export class SidenavComponent {
 	isOpenedChange = new EventEmitter<boolean>();
 
 	toggleSidenavOpened() {
-		// this.isSidenavOpened = !this.isSidenavOpened;
 		this.isOpenedChange.emit(!this.isOpened);
 	}
 }

@@ -9,10 +9,8 @@ import { SidenavModule } from './core/sidenav/sidenav.module';
 import { CardModule } from './pages/products-list/card/card.module';
 
 @NgModule({
-	declarations: [AppComponent], //const
-	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, SidenavModule, CardModule], // import {...} from '...'
-	// exports: [], // export const
-	// providers: [],
+	declarations: [AppComponent],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, SidenavModule, CardModule],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
