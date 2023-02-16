@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { applicationConfigMock } from './shared/application-config/application-config.mock';
+import { productMock } from './shared/products/product.mock';
 
 @Component({
 	selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent {
 	// readonly log = console.log;
 	readonly applicationConfig = applicationConfigMock;
 	isSidenavOpened = true;
+	readonly product = productMock;
 
 	toggleSidenavOpened() {
 		this.isSidenavOpened = !this.isSidenavOpened;
