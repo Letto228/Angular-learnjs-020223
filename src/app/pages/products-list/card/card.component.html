@@ -1,19 +1,29 @@
 <mat-card class="example-card">
 	<mat-card-header>
 		<div mat-card-avatar class="example-header-image"></div>
-		<mat-card-title>{{ productRequest.name }}</mat-card-title>
+		<mat-card-title>{{ product.name }}</mat-card-title>
 	</mat-card-header>
 	<img
 		mat-card-image
-		[src]="productRequest.images[currentPictureIndexOnCard].url"
-		[alt]="productRequest.images[currentPictureIndexOnCard].source"
+		[src]="product.images[currentPictureIndexOnCard].url"
+		alt="card_picture"
 	/>
-	<app-pagination
-		[pictureLength]="productRequest.images.length"
-		(currentPictureIndex)="onPictureIndexChanged($event)"
-	></app-pagination>
+	<mat-paginator
+		[length]="pictureLength"
+		[pageSize]="1"
+		[hidePageSize]="true"
+		(page)="onPictureIndexChanged($event)"
+	>
+	</mat-paginator>
 	<mat-card-content></mat-card-content>
 	<mat-card-actions>
-		<app-dialog (isBuyed)="productHandler($event)"></app-dialog>
+		<button
+			mat-button
+			mat-raised-button
+			[matBadge]="countItemsOnBuy"
+			(click)="OnBuyClick()"
+		>
+			КУПИТЬ
+		</button>
 	</mat-card-actions>
 </mat-card>

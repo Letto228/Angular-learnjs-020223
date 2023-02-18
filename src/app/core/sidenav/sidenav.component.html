@@ -4,6 +4,10 @@
 	</mat-drawer>
 
 	<div class="example-sidenav-content">
-		<app-card></app-card>
+		<app-card
+			[product]="productRequest"
+			[countItemsOnBuy]="countItems"
+			(countBuyedItems)="reduceItems($event)"
+		></app-card>
 	</div>
 </mat-drawer-container>

@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IProduct } from 'src/app/shared/products/product.interface';
+import { productMock } from '../../shared/products/product.mock';
 
 @Component({
 	selector: 'app-sidenav',
@@ -6,14 +8,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 	styleUrls: ['./sidenav.component.css'],
 })
 export class SidenavComponent {
-	@Input()
-	isOpened = true;
+	productRequest: IProduct = productMock;
+	countItems = 0;
 
-	@Output()
-	isOpenedChange = new EventEmitter<boolean>();
+	@Input() isOpened = true;
+
+	@Output() isOpenedChange = new EventEmitter<boolean>();
 
 	toggleSidenavOpened() {
 		// this.isSidenavOpened = !this.isSidenavOpened;
 		this.isOpenedChange.emit(!this.isOpened);
+	}
+
+	reduceItems(event: number) {
+		this.countItems += event;
 	}
 }
