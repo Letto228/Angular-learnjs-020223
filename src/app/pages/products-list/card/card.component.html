@@ -1,0 +1,17 @@
+<mat-card class="example-card">
+	<img
+		mat-card-image
+		[src]="product?.images?.[0]?.url"
+		alt="Фото товара: {{ product?.name }}"
+	/>
+	<mat-card-content>
+		<p>{{ product?.name }}</p>
+		<p>Цена: {{ product?.price }}</p>
+		<p>Рейтинг: {{ product?.rating }}</p>
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-button (click)="buyClick(); $event.stopPropagation()">
+			КУПИТЬ
+		</button>
+	</mat-card-actions>
+</mat-card>
