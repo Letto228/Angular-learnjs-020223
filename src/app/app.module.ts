@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './core/header/header.module';
 import { SidenavModule } from './core/sidenav/sidenav.module';
+import { ProductCardModule } from './pages/products-list/card/product-card/product-card.module';
 
 @NgModule({
 	declarations: [AppComponent], //const

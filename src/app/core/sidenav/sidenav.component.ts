@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { productMock } from '../../shared/products/product.mock';
 
 @Component({
 	selector: 'app-sidenav',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 	styleUrls: ['./sidenav.component.css'],
 })
 export class SidenavComponent {
+	readonly product = productMock;
+
 	@Input()
 	isOpened = true;
 
