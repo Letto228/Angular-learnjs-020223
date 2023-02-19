@@ -10,6 +10,7 @@ import { productMock } from '../../shared/products/product.mock';
 export class SidenavComponent {
 	productRequest: IProduct = productMock;
 	countItems = 0;
+	productsInBasket: Array<string> = [];
 
 	@Input() isOpened = true;
 
@@ -20,7 +21,9 @@ export class SidenavComponent {
 		this.isOpenedChange.emit(!this.isOpened);
 	}
 
-	reduceItems(event: number) {
-		this.countItems += event;
+	onBuyItems(event: string) {
+		!this.productsInBasket.includes(event) && this.productsInBasket.push(event);
+		this.countItems++;
+		console.log({ productsInBasket: this.productsInBasket, countItems: this.countItems });
 	}
 }

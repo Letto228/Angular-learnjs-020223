@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { IProduct } from 'src/app/shared/products/product.interface';
@@ -9,25 +9,19 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 	templateUrl: './card.component.html',
 	styleUrls: ['./card.component.css'],
 })
-export class CardComponent implements OnInit {
-	constructor(public dialog: MatDialog) {}
-
-	currentPictureIndexOnCard = 0;
-	pictureLength: number | undefined;
+export class CardComponent {
+	constructor(private dialog: MatDialog) {}
 
 	@Input() product!: IProduct;
 	@Input() countItemsOnBuy!: number;
 
-	@Output() countBuyedItems = new EventEmitter<number>();
+	@Output() buyItems = new EventEmitter<string>();
 
-	ngOnInit() {
-		console.log(this.product);
-		this.pictureLength = this.product?.images?.length;
-	}
+	currentPictureIndexOnCard = 0;
 
 	OnBuyClick() {
 		this.dialog.open(DialogContentComponent);
-		this.countBuyedItems.emit(1);
+		this.buyItems.emit(this.product._id);
 	}
 
 	onPictureIndexChanged(event: PageEvent) {

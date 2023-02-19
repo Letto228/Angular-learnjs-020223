@@ -9,7 +9,7 @@
 		alt="card_picture"
 	/>
 	<mat-paginator
-		[length]="pictureLength"
+		[length]="this.product.images.length"
 		[pageSize]="1"
 		[hidePageSize]="true"
 		(page)="onPictureIndexChanged($event)"

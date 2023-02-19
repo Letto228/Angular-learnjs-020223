@@ -7,7 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 	styleUrls: ['./dialog-content.component.css'],
 })
 export class DialogContentComponent {
-	constructor(public dialogRef: MatDialogRef<DialogContentComponent>) {}
+	constructor(private dialogRef: MatDialogRef<DialogContentComponent>) {}
 
 	closeDialog() {
 		this.dialogRef.close('Pizza!');

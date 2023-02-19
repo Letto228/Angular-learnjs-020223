@@ -7,7 +7,7 @@
 		<app-card
 			[product]="productRequest"
 			[countItemsOnBuy]="countItems"
-			(countBuyedItems)="reduceItems($event)"
+			(buyItems)="onBuyItems($event)"
 		></app-card>
 	</div>
 </mat-drawer-container>
