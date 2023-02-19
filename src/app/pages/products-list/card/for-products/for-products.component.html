@@ -1,15 +1,47 @@
-<mat-card class="example-card">
+<mat-card class="card">
 	<mat-card-header>
-		<mat-card-title-group>
-			<mat-card-title>Shiba Inu</mat-card-title>
-			<mat-card-subtitle>Extra large</mat-card-subtitle>
-			<img
-				mat-card-xl-image
-				src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-			/>
-		</mat-card-title-group>
+		<mat-card-title>{{ iProduct?.name }} </mat-card-title>
 	</mat-card-header>
+	<div class="galerey">
+		<img
+			mat-card-image
+			[src]="iProduct?.images?.[0]?.url"
+			alt="Photo of a Product"
+		/>
+	</div>
+	<mat-card-subtitle>
+		{{ iProduct?.price
+		}}<mat-icon class="material-symbols-outlined">currency_ruble</mat-icon>
+	</mat-card-subtitle>
 	<mat-card-content>
-		{{ 'longText' }}
+		<p>Отзывы {{ iProduct?.feedbacksCount }}</p>
+		<div class="raiting">
+			Рейтинг:
+			<mat-icon
+				[class.star-active]="isStarActive(1)"
+				fontIcon="star_rate"
+			></mat-icon>
+			<mat-icon
+				[class.star-active]="isStarActive(2)"
+				fontIcon="star_rate"
+			></mat-icon>
+			<mat-icon
+				[class.star-active]="isStarActive(3)"
+				fontIcon="star_rate"
+			></mat-icon>
+			<mat-icon
+				[class.star-active]="isStarActive(4)"
+				fontIcon="star_rate"
+			></mat-icon>
+			<mat-icon
+				[class.star-active]="isStarActive(5)"
+				fontIcon="star_rate"
+			></mat-icon>
+		</div>
 	</mat-card-content>
+	<mat-card-actions>
+		<button class="button-buy" mat-button (click)="buyProduct($event)">
+			BUY
+		</button>
+	</mat-card-actions>
 </mat-card>

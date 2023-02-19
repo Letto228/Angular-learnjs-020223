@@ -8,10 +8,10 @@ import { HeaderModule } from './core/header/header.module';
 import { SidenavModule } from './core/sidenav/sidenav.module';
 
 @NgModule({
-	declarations: [AppComponent], //const
-	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, SidenavModule], // import {...} from '...'
+	declarations: [AppComponent],
 	// exports: [], // export const
 	// providers: [],
 	bootstrap: [AppComponent],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, SidenavModule],
 })
 export class AppModule {}
