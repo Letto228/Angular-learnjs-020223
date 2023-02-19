@@ -17,7 +17,9 @@ export class CardComponent {
 
 	changeImage() {
 		const cntImage = this.product?.images.length;
-		this.imageIndex = this.imageIndex + 1 == cntImage ? 0 : this.imageIndex + 1;
+		const isLastImage = this.imageIndex + 1 == cntImage;
+		this.imageIndex = isLastImage ? 0 : this.imageIndex + 1;
+		//this.imageIndex = this.imageIndex + 1 == cntImage ? 0 : this.imageIndex + 1;
 	}
 
 	clickBuyButton(event: MouseEvent) {

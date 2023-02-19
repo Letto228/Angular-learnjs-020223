@@ -6,13 +6,7 @@
 	<img
 		mat-card-image
 		alt="Photo of a product"
-		[src]="
-			product
-				? product.images[imageIndex]
-					? product.images[imageIndex].url
-					: ''
-				: ''
-		"
+		[src]="product?.images?.[imageIndex]?.url || ''"
 		(click)="changeImage()"
 	/>
 	<mat-card-content></mat-card-content>
