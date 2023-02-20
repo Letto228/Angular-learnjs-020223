@@ -22,10 +22,4 @@ export class AppComponent implements OnInit {
 			this.needViewPopup = false;
 		}, 4000);
 	}
-
-	// isSidenavOpened = true;
-
-	// toggleSidenavOpened() {
-	// 	this.isSidenavOpened = !this.isSidenavOpened;
-	// }
 }

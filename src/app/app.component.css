@@ -1,0 +1,7 @@
+:host {
+	position: relative;
+	background-color: yellow;
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 64px 1fr;
+}

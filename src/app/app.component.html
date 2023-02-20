@@ -16,18 +16,11 @@
 			<mat-list-item role="listitem">Item 3</mat-list-item>
 		</mat-list>
 	</ng-container>
-
-	<!-- <ng-template #navigationTemplate>
-		<h2>{{applicationConfig.title}}</h2>
-		<mat-list role="list">
-			<mat-list-item role="listitem">Item 1</mat-list-item>
-			<mat-list-item role="listitem">Item 2</mat-list-item>
-			<mat-list-item role="listitem">Item 3</mat-list-item>
-		</mat-list>
-	</ng-template> -->
 </app-sidenav>
 
-<!-- <app-popup-host [template]="needViewPopup ? template : undefined"></app-popup-host> -->
+<app-popup-host
+	[template]="needViewPopup ? template : undefined"
+></app-popup-host>
 
 <ng-template #template>
 	<h1>Win!</h1>
