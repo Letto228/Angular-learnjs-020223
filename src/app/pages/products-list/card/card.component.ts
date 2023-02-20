@@ -17,4 +17,8 @@ export class CardComponent {
 		console.log('buy product');
 		this.productBuy.emit(this.product?._id);
 	}
+
+	getPhotoAlt() {
+		return 'Фото товара:' + this.product?.name;
+	}
 }

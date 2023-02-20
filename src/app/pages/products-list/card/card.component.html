@@ -2,7 +2,7 @@
 	<img
 		mat-card-image
 		[src]="product?.images?.[0]?.url"
-		alt="Фото товара: {{ product?.name }}"
+		[alt]="getPhotoAlt()"
 	/>
 	<mat-card-content>
 		<p>{{ product?.name }}</p>
