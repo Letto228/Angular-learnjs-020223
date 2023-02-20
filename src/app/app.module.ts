@@ -8,6 +8,7 @@ import { HeaderModule } from './core/header/header.module';
 import { SidenavModule } from './core/sidenav/sidenav.module';
 import { CardModule } from './pages/products-list/card/card.module';
 import { MatListModule } from '@angular/material/list';
+import { PopupHostModule } from './core/popup-host/popup-host.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 		SidenavModule,
 		CardModule,
 		MatListModule,
+		PopupHostModule,
 	],
 	bootstrap: [AppComponent],
 })
