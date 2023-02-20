@@ -8,4 +8,6 @@ import { applicationConfigMock } from './shared/application-config/application-c
 })
 export class AppComponent {
 	readonly applicationConfig = applicationConfigMock;
+
+	isBoxShadowActive = false;
 }

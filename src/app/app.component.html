@@ -6,9 +6,23 @@
 	<ng-container ngProjectAs="sidenav">
 		<h2>{{ applicationConfig.title }}</h2>
 		<mat-list role="list">
-			<mat-list-item role="listitem">Item 1</mat-list-item>
-			<mat-list-item role="listitem">Item 2</mat-list-item>
-			<mat-list-item role="listitem">Item 3</mat-list-item>
+			<mat-list-item #list appInsertShadow role="listitem"
+				>Item 1</mat-list-item
+			>
+			<mat-list-item
+				#list
+				role="listitem"
+				[style.boxShadow]="
+					isBoxShadowActive ? 'inset 0 0 10px #000' : ''
+				"
+				(click)="isBoxShadowActive = !isBoxShadowActive"
+				(contextmenu)="$event.preventDefault()"
+			>
+				Item 2
+			</mat-list-item>
+			<mat-list-item #list appInsertShadow role="listitem"
+				>Item 3</mat-list-item
+			>
 		</mat-list>
 	</ng-container>
 	<app-products-list></app-products-list>

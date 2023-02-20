@@ -1,4 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+	AfterContentInit,
+	AfterViewInit,
+	Component,
+	ContentChildren,
+	QueryList,
+	ViewChild,
+	ViewContainerRef,
+} from '@angular/core';
+import { MatListItem } from '@angular/material/list';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
@@ -6,9 +15,17 @@ import { MatDrawer } from '@angular/material/sidenav';
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.css'],
 })
-export class SidenavComponent {
+export class SidenavComponent implements AfterContentInit {
 	@ViewChild(MatDrawer, { static: true })
 	private matDrawer!: MatDrawer;
+
+	@ContentChildren(MatListItem, { read: ViewContainerRef, descendants: true })
+	matLists!: QueryList<ViewContainerRef>;
+
+	ngAfterContentInit() {
+		console.log(this.matLists);
+		this.matLists.changes.subscribe(console.log);
+	}
 
 	toggleSidenavOpened() {
 		this.matDrawer.toggle();

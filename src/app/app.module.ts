@@ -9,6 +9,7 @@ import { SidenavModule } from './core/sidenav/sidenav.module';
 import { MatListModule } from '@angular/material/list';
 import { PopupHostModule } from './core/popup-host/popup-host.module';
 import { ProductsListModule } from './pages/products-list/products-list.module';
+import { InsertShadowModule } from './shared/insert-shadow/insert-shadow.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { ProductsListModule } from './pages/products-list/products-list.module';
 		MatListModule,
 		PopupHostModule,
 		ProductsListModule,
+		InsertShadowModule,
 	],
 	bootstrap: [AppComponent],
 })

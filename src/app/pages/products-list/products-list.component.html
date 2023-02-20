@@ -1,7 +1,49 @@
-<div appScrollWithLoading class="scroll-container">
-	<app-card class="card" [product]="productsMock[0]"></app-card>
-	<app-card class="card" [product]="productsMock[1]"></app-card>
-	<app-card class="card" [product]="productsMock[2]"></app-card>
-	<app-card class="card" [product]="productsMock[3]"></app-card>
-	<app-card class="card" [product]="productsMock[4]"></app-card>
-</div>
+<!-- <ng-template [appDumpNgIf]="products"> -->
+<!-- <ng-template [ngIf]="!error" [ngIfElse]="errorTemplateRef"> -->
+
+<ng-template
+	let-productFtomTemplate="ngIf"
+	[ngIf]="getProducts()"
+	[ngIfElse]="loaderTemplateRef"
+>
+	<!-- <ng-template [appDumpNgIf]="getProducts()" let-implicit="$implicit" let-userName="name"> -->
+	<!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoadData($event)"> -->
+	<div class="scroll-container">
+		<!-- {{implicit}} {{userName}} -->
+		<!-- <ng-template [appLet]="stream | async" let-value="appLet"> -->
+		<!-- {{value}} -->
+		<app-card
+			#card
+			class="card"
+			[product]="productFtomTemplate[0]"
+		></app-card>
+		<app-card
+			#card
+			class="card"
+			[product]="productFtomTemplate[1]"
+		></app-card>
+		<app-card
+			#card
+			class="card"
+			[product]="productFtomTemplate[2]"
+		></app-card>
+		<app-card
+			#card
+			class="card"
+			[product]="productFtomTemplate[3]"
+		></app-card>
+		<app-card
+			#card
+			class="card"
+			[product]="productFtomTemplate[4]"
+		></app-card>
+		<!-- {{value}} -->
+		<!-- </ng-template> -->
+	</div>
+</ng-template>
+<!-- </ng-template> -->
+
+<!-- <ng-template [ngIf]="!products"> -->
+<ng-template #loaderTemplateRef>
+	<mat-spinner class="loader"></mat-spinner>
+</ng-template>
