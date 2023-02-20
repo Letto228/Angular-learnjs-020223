@@ -1,0 +1,18 @@
+<mat-card class="example-card">
+	<mat-card-header>
+		<mat-card-title>{{ product?.name }}</mat-card-title>
+		<mat-card-subtitle>{{ product?.subCategory }}</mat-card-subtitle>
+	</mat-card-header>
+
+	<img mat-card-image [src]="(product?.images)![0].url" [alt]="" />
+	<mat-card-content>
+		<p>Price: {{ product?.price }}</p>
+		<p>Rating: {{ product?.rating }}</p>
+		<p>Feedbacks count: {{ product?.feedbacksCount }}</p>
+	</mat-card-content>
+	<mat-card-actions>
+		<button (click)="handleClickCard($event, product)" mat-button>
+			BUY
+		</button>
+	</mat-card-actions>
+</mat-card>
