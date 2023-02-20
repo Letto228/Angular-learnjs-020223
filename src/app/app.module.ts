@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './core/header/header.module';
 import { SidenavModule } from './core/sidenav/sidenav.module';
-import { CardModule } from './pages/products-list/card/card.module';
 import { MatListModule } from '@angular/material/list';
 import { PopupHostModule } from './core/popup-host/popup-host.module';
 
@@ -18,7 +17,6 @@ import { PopupHostModule } from './core/popup-host/popup-host.module';
 		BrowserAnimationsModule,
 		HeaderModule,
 		SidenavModule,
-		CardModule,
 		MatListModule,
 		PopupHostModule,
 	],
