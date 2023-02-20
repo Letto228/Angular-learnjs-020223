@@ -1,4 +1,13 @@
-import { Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+	Component,
+	HostBinding,
+	Input,
+	OnChanges,
+	SimpleChanges,
+	TemplateRef,
+	ViewChild,
+	ViewContainerRef,
+} from '@angular/core';
 
 @Component({
 	selector: 'app-popup-host',
@@ -6,28 +15,35 @@ import { Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, Vie
 	styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent implements OnChanges {
-	@Input() template: TemplateRef<unknown> | undefined;
+	@Input()
+	template: TemplateRef<any> | undefined;
 
-	@ViewChild('viewport', { read: ViewContainerRef, static: true })
-	private viewportViewContainer!: ViewContainerRef;
+	@ViewChild('templateContainer', { static: true, read: ViewContainerRef })
+	private templateContainer!: ViewContainerRef;
 
-	isViewportClear = true;
+	@HostBinding('class.showed')
+	get showed() {
+		return this.template;
+	}
+
+	@HostBinding('class.hidden')
+	get hidden() {
+		return !this.template;
+	}
 
 	ngOnChanges({ template }: SimpleChanges) {
 		if (template) {
-			this.updatePopupContent(this.template);
+			this.insertTemplate(this.template);
 		}
 	}
 
-	private updatePopupContent(template: TemplateRef<unknown> | undefined) {
-		if (!this.isViewportClear) {
-			this.viewportViewContainer.clear();
+	private insertTemplate(template: TemplateRef<any> | undefined) {
+		this.templateContainer.clear();
+
+		if (!template) {
+			return;
 		}
 
-		if (template) {
-			this.viewportViewContainer.createEmbeddedView(template);
-		}
-
-		this.isViewportClear = !this.viewportViewContainer.length;
+		this.templateContainer.createEmbeddedView(template);
 	}
 }

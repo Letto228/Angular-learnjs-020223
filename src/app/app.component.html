@@ -3,15 +3,32 @@
 	(menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
 <app-sidenav #sidenav>
+	<div #div>
+		<input #inputElement />
+	</div>
+	<h1>Это продукт</h1>
+
 	<ng-container ngProjectAs="sidenav">
-		<h2>{{ applicationConfig.title }}</h2>
+		<h2 ngProjectAs="title">{{ applicationConfig.title }}</h2>
 		<mat-list role="list">
 			<mat-list-item role="listitem">Item 1</mat-list-item>
 			<mat-list-item role="listitem">Item 2</mat-list-item>
 			<mat-list-item role="listitem">Item 3</mat-list-item>
 		</mat-list>
 	</ng-container>
-	<app-products-list></app-products-list>
-</app-sidenav>
 
-<!-- <app-popup-host></app-popup-host> -->
+	<!-- <ng-template #navigationTemplate>
+		<h2>{{applicationConfig.title}}</h2>
+		<mat-list role="list">
+			<mat-list-item role="listitem">Item 1</mat-list-item>
+			<mat-list-item role="listitem">Item 2</mat-list-item>
+			<mat-list-item role="listitem">Item 3</mat-list-item>
+		</mat-list>
+	</ng-template> -->
+</app-sidenav>
+<ng-template #popupTemplate>
+	<h1>Win!</h1>
+</ng-template>
+
+<app-popup-host [template]="needViewPopup ? popupTemplate : undefined">
+</app-popup-host>
