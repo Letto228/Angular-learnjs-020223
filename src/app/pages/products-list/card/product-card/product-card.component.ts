@@ -11,11 +11,11 @@ export class ProductCardComponent {
 	product: IProduct | undefined;
 
 	@Output()
-	sendIdEmitter = new EventEmitter<string>();
+	productIdToCart = new EventEmitter<string>();
 
 	buyProduct(event: MouseEvent) {
 		event.stopPropagation();
 		// console.log(this.product?._id)
-		this.sendIdEmitter.emit(this.product?._id);
+		this.productIdToCart.emit(this.product?._id);
 	}
 }
