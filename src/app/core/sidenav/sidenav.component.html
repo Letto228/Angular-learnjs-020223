@@ -4,8 +4,9 @@
 	</mat-drawer>
 
 	<div class="example-sidenav-content">
-		<button type="button" mat-button (click)="toggleSidenavOpened()">
-			Toggle sidenav
-		</button>
+		<app-card-product
+			[product]="productMock"
+			(productEmitter)="onClickBuyProduct($event)"
+		></app-card-product>
 	</div>
 </mat-drawer-container>
