@@ -4,14 +4,14 @@
 		<mat-card-subtitle>{{ product?.subCategory }}</mat-card-subtitle>
 	</mat-card-header>
 
-	<img mat-card-image [src]="(product?.images)![0].url" [alt]="" />
+	<img mat-card-image [src]="(product?.images)![0].url" />
 	<mat-card-content>
 		<p>Price: {{ product?.price }}</p>
 		<p>Rating: {{ product?.rating }}</p>
 		<p>Feedbacks count: {{ product?.feedbacksCount }}</p>
 	</mat-card-content>
 	<mat-card-actions>
-		<button (click)="handleClickCard($event, product)" mat-button>
+		<button (click)="handleClickCard($event, product?._id)" mat-button>
 			BUY
 		</button>
 	</mat-card-actions>

@@ -16,7 +16,7 @@ export class SidenavComponent {
 	@Output()
 	isOpenedChange = new EventEmitter<boolean>();
 
-	onClickBuyProduct(product: IProduct | undefined): void {
+	onClickBuyProduct(product: IProduct['_id'] | undefined): void {
 		console.log('SidenavComponent', product);
 	}
 }

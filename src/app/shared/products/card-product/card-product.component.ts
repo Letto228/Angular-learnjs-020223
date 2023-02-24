@@ -11,9 +11,9 @@ export class CardProductComponent {
 	product: IProduct | undefined;
 
 	@Output()
-	productEmitter = new EventEmitter<IProduct | undefined>();
+	productEmitter = new EventEmitter<IProduct['_id'] | undefined>();
 
-	handleClickCard($event: MouseEvent, product: IProduct | undefined) {
+	handleClickCard($event: MouseEvent, product: IProduct['_id'] | undefined) {
 		$event.stopPropagation();
 		this.productEmitter.emit(product);
 	}
