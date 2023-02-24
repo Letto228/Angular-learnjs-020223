@@ -10,18 +10,18 @@ import { productMock } from 'src/app/shared/products/product.mock';
 })
 export class ForProductsComponent {
 	@Input()
-	iProduct: IProduct | undefined = productMock;
+	product: IProduct | undefined = productMock;
 
 	@Output()
-	buyIProduct = new EventEmitter<IProduct['_id'] | undefined>();
+	buyProductById = new EventEmitter<IProduct['_id'] | undefined>();
 
 	buyProduct(event: Event) {
-		event.stopPropagation;
+		event.stopPropagation();
 
-		this.buyIProduct.emit(this.iProduct?._id);
+		this.buyProductById.emit(this.product?._id);
 	}
 
 	isStarActive(starIndex: number): boolean {
-		return Boolean(this.iProduct && this.iProduct.rating >= starIndex);
+		return Boolean(this.product && this.product.rating >= starIndex);
 	}
 }
