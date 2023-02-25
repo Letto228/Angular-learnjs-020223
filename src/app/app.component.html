@@ -27,8 +27,8 @@
 	</ng-template> -->
 </app-sidenav>
 
-<!-- <app-popup-host [template]="needViewPopup ? template : undefined"></app-popup-host> -->
+<ng-template #template></ng-template>
 
-<ng-template #template>
-	<h1>Win!</h1>
-</ng-template>
+<app-popup-host
+	[template]="needViewPopup ? template : undefined"
+></app-popup-host>

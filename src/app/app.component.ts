@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
 	ngOnInit() {
 		setTimeout(() => {
 			this.needViewPopup = true;
-		}, 2000);
+		}, 4000);
 
 		setTimeout(() => {
 			this.needViewPopup = false;
-		}, 4000);
+		}, 8000);
 	}
 
 	// isSidenavOpened = true;
