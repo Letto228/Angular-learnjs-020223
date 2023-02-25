@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 import { IProduct } from '../../shared/products/product.interface';
 import { productsMock } from '../../shared/products/products.mock';
 import { CardComponent } from './card/card.component';
+import { LoadDirection } from '../../shared/scroll-loading/load-direction.enum';
 
 @Component({
 	selector: 'app-products-list',
@@ -27,12 +28,12 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 	}
 
 	getProducts(): IProduct[] | undefined {
-		console.log('calculateProducts');
+		//console.log('calculateProducts');
 
 		return this.products;
 	}
 
-	onLoadData(direction: string) {
+	onLoadData(direction: LoadDirection) {
 		console.log(direction);
 	}
 

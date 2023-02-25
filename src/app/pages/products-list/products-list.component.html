@@ -7,8 +7,12 @@
 	[ngIfElse]="loaderTemplateRef"
 >
 	<!-- <ng-template [appDumpNgIf]="getProducts()" let-implicit="$implicit" let-userName="name"> -->
-	<!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoadData($event)"> -->
-	<div class="scroll-container">
+	<div
+		appScrollLoading
+		class="scroll-container"
+		(loadData)="onLoadData($event)"
+	>
+		<!--<div class="scroll-container"> -->
 		<!-- {{implicit}} {{userName}} -->
 		<!-- <ng-template [appLet]="stream | async" let-value="appLet"> -->
 		<!-- {{value}} -->
