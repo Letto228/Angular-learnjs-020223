@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, HostListener, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 import { ScrollLoadingDirection } from './scroll-loading-direction.enum';
 
 @Directive({
@@ -7,8 +7,6 @@ import { ScrollLoadingDirection } from './scroll-loading-direction.enum';
 export class AppScrollWithLoadingDirective {
 	@Output()
 	scrollLoadingDirection = new EventEmitter<ScrollLoadingDirection | undefined>();
-
-	private readonly scrollStep = 10;
 
 	@HostListener('scroll', ['$event'])
 	onScroll(event: any) {
@@ -26,11 +24,11 @@ export class AppScrollWithLoadingDirective {
 	}
 
 	isNeedLoadBefore(borderOffset: number, scrollTop: number): boolean {
-		return scrollTop <= borderOffset && scrollTop > borderOffset - this.scrollStep;
+		return scrollTop <= borderOffset;
 	}
 
 	isNeedLoadAfter(borderOffset: number, scrollHeight: number, clientHeight: number, scrollTop: number): boolean {
 		const position = scrollHeight - scrollTop - clientHeight;
-		return position <= borderOffset && position > borderOffset - this.scrollStep;
+		return position <= borderOffset;
 	}
 }
