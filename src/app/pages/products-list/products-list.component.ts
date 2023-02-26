@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 import { IProduct } from '../../shared/products/product.interface';
 import { productsMock } from '../../shared/products/products.mock';
 import { CardComponent } from './card/card.component';
+import { ScrollLoadingDirection } from '../../shared/app-scroll-with-loading/scroll-loading-direction.enum';
 
 @Component({
 	selector: 'app-products-list',
@@ -11,6 +12,7 @@ import { CardComponent } from './card/card.component';
 })
 export class ProductsListComponent implements OnInit, AfterViewInit {
 	products: IProduct[] | undefined = undefined;
+	scrollLoading: ScrollLoadingDirection | undefined;
 
 	ngOnInit() {
 		setTimeout(() => {
@@ -21,18 +23,16 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit() {
 		this.cards.changes.subscribe((cards: QueryList<CardComponent>) => {
 			cards.forEach(value => {
-				console.log('value', value);
+				//console.log('value', value);
 			});
 		});
 	}
 
 	getProducts(): IProduct[] | undefined {
-		console.log('calculateProducts');
-
 		return this.products;
 	}
 
-	onLoadData(direction: string) {
+	onLoadData(direction: ScrollLoadingDirection | undefined) {
 		console.log(direction);
 	}
 

@@ -23,7 +23,6 @@ export class SidenavComponent implements AfterContentInit {
 	matLists!: QueryList<ViewContainerRef>;
 
 	ngAfterContentInit() {
-		console.log(this.matLists);
 		this.matLists.changes.subscribe(console.log);
 	}
 
