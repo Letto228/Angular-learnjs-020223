@@ -1,49 +1,22 @@
-<!-- <ng-template [appDumpNgIf]="products"> -->
-<!-- <ng-template [ngIf]="!error" [ngIfElse]="errorTemplateRef"> -->
-
 <ng-template
-	let-productFtomTemplate="ngIf"
+	let-productFromTemplate="ngIf"
 	[ngIf]="getProducts()"
 	[ngIfElse]="loaderTemplateRef"
 >
-	<!-- <ng-template [appDumpNgIf]="getProducts()" let-implicit="$implicit" let-userName="name"> -->
-	<!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoadData($event)"> -->
-	<div class="scroll-container">
-		<!-- {{implicit}} {{userName}} -->
-		<!-- <ng-template [appLet]="stream | async" let-value="appLet"> -->
-		<!-- {{value}} -->
+	<div
+		appScrollLoad
+		class="scroll-container"
+		[distance]="distance"
+		(borderReachedHandler)="onLoadData($event)"
+	>
 		<app-card
+			*ngFor="let item of products"
 			#card
 			class="card"
-			[product]="productFtomTemplate[0]"
+			[product]="item"
 		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[1]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[2]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[3]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[4]"
-		></app-card>
-		<!-- {{value}} -->
-		<!-- </ng-template> -->
 	</div>
 </ng-template>
-<!-- </ng-template> -->
-
-<!-- <ng-template [ngIf]="!products"> -->
 <ng-template #loaderTemplateRef>
 	<mat-spinner class="loader"></mat-spinner>
 </ng-template>
