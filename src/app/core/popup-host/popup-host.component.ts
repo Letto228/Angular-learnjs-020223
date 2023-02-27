@@ -1,25 +1,21 @@
-import { Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+	Component,
+	HostBinding,
+	Input,
+	OnChanges,
+	SimpleChanges,
+	TemplateRef,
+	ViewChild,
+	ViewContainerRef,
+} from '@angular/core';
 
 @Component({
 	selector: 'app-popup-host',
 	templateUrl: './popup-host.component.html',
 	styleUrls: ['./popup-host.component.css'],
 })
-export class PopupHostComponent implements OnChanges {
-	@Input() template: TemplateRef<unknown> | undefined;
-
-	@ViewChild('viewport', { read: ViewContainerRef, static: true })
-	private viewportViewContainer!: ViewContainerRef;
-
-	isViewportClear = true;
-
-	ngOnChanges({ template }: SimpleChanges) {
-		if (template) {
-			this.updatePopupContent(this.template);
-		}
-	}
-
-	private updatePopupContent(template: TemplateRef<unknown> | undefined) {
+export class PopupHostComponent {
+	@Input() set template(template: TemplateRef<any> | undefined) {
 		if (!this.isViewportClear) {
 			this.viewportViewContainer.clear();
 		}
@@ -30,4 +26,10 @@ export class PopupHostComponent implements OnChanges {
 
 		this.isViewportClear = !this.viewportViewContainer.length;
 	}
+
+	@ViewChild('viewport', { read: ViewContainerRef, static: true })
+	private viewportViewContainer!: ViewContainerRef;
+
+	@HostBinding('class.empty')
+	isViewportClear = true;
 }
