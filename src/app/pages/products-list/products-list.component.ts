@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ContentChildren, OnInit, QueryList, ViewChild
 import { of } from 'rxjs';
 import { IProduct } from '../../shared/products/product.interface';
 import { productsMock } from '../../shared/products/products.mock';
+import { LoadDirection } from '../../shared/scroll-with-loading/load-direction.const';
 import { CardComponent } from './card/card.component';
 
 @Component({
@@ -32,7 +33,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 		return this.products;
 	}
 
-	onLoadData(direction: string) {
+	onLoadData(direction: LoadDirection) {
 		console.log(direction);
 	}
 

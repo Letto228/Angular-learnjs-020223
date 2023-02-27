@@ -9,7 +9,10 @@ export class DumpNgIfDirective {
 		const isContainerHasView = this.viewContainerRef.length;
 
 		if (visibilityFlag && !isContainerHasView) {
-			this.viewContainerRef.createEmbeddedView(this.templateRef, { name: 'Egor', $implicit: 'is implisit' });
+			this.viewContainerRef.createEmbeddedView(this.templateRef, {
+				appDumpNgIf: visibilityFlag,
+				$implicit: visibilityFlag,
+			});
 
 			return;
 		}
@@ -20,13 +23,11 @@ export class DumpNgIfDirective {
 			return;
 		}
 	}
-	// directive.appDumpNgIf = element.appDumpNgIf;
 
 	constructor(
-		// private readonly templateRef: TemplateRef<unknown>,
 		private readonly templateRef: TemplateRef<{
-			$implicit: string;
-			name: string;
+			$implicit: any;
+			appDumpNgIf: any;
 		}>,
 		private readonly viewContainerRef: ViewContainerRef,
 	) {}

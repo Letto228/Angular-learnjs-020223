@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { PopupHostModule } from './core/popup-host/popup-host.module';
 import { ProductsListModule } from './pages/products-list/products-list.module';
 import { InsertShadowModule } from './shared/insert-shadow/insert-shadow.module';
+import { LoadOnscrollModule } from './shared/load-onscroll/load-onscroll.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { InsertShadowModule } from './shared/insert-shadow/insert-shadow.module'
 		PopupHostModule,
 		ProductsListModule,
 		InsertShadowModule,
+		LoadOnscrollModule,
 	],
 	bootstrap: [AppComponent],
 })
