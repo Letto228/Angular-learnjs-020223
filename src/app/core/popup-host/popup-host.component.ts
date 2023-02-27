@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	Input,
@@ -13,6 +14,7 @@ import {
 	selector: 'app-popup-host',
 	templateUrl: './popup-host.component.html',
 	styleUrls: ['./popup-host.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
 	@Input() set template(template: TemplateRef<any> | undefined) {

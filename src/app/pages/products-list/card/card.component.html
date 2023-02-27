@@ -3,16 +3,19 @@
 		<mat-card-title>{{ product?.name }}</mat-card-title>
 		<mat-card-subtitle>{{ product?.price }} $</mat-card-subtitle>
 	</mat-card-header>
-	<div class="galerey">
-		<button mat-icon-button>
+	<div
+		*appCarousel="
+			let img of product?.images;
+			let next = next;
+			let previous = previous
+		"
+		class="galerey"
+	>
+		<button mat-icon-button (click)="previous()">
 			<mat-icon> chevron_left </mat-icon>
 		</button>
-		<img
-			mat-card-image
-			alt="Product photo"
-			[src]="product?.images?.[0]?.url"
-		/>
-		<button mat-icon-button>
+		<img mat-card-image alt="Product photo" [src]="img.url" />
+		<button mat-icon-button (click)="next()">
 			<mat-icon> chevron_right </mat-icon>
 		</button>
 	</div>

@@ -1,19 +1,34 @@
-<ng-template
+<!-- <ng-template
+	let-productFtomImplicit
 	let-productFtomTemplate="ngIf"
 	[ngIf]="getProducts()"
 	[ngIfElse]="loaderTemplateRef"
+> -->
+<div
+	*ngIf="
+		getProducts() as productFtomTemplate;
+		else loaderTemplateRef;
+		let productFtomImplicit
+	"
+	appScrollWithLoading
+	class="scroll-container"
+	(loadData)="onLoadData($event)"
 >
-	<div
+	<!-- <div
+		*ngIf="getProducts() else loaderTemplateRef; let productFtomTemplate = ngIf; let productFtomImplicit"
 		appScrollWithLoading
 		class="scroll-container"
 		(loadData)="onLoadData($event)"
-	>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[0]"
-		></app-card>
-		<app-card
+	> -->
+	<!-- <ng-template ngFor [ngForOf]="productFtomTemplate" [ngForTrackBy]="trackById" let-product let-for="ngForOf"> -->
+	<app-card
+		*ngFor="let product of productFtomTemplate as for; trackBy: trackById"
+		class="card"
+		[product]="product"
+	></app-card>
+	<!-- </ng-template> -->
+
+	<!-- <app-card
 			#card
 			class="card"
 			[product]="productFtomTemplate[1]"
@@ -32,9 +47,9 @@
 			#card
 			class="card"
 			[product]="productFtomTemplate[4]"
-		></app-card>
-	</div>
-</ng-template>
+		></app-card> -->
+</div>
+<!-- </ng-template> -->
 
 <ng-template #loaderTemplateRef>
 	<mat-spinner class="loader"></mat-spinner>
