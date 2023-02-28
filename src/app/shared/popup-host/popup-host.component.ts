@@ -1,4 +1,13 @@
-import { Component, Input, OnChanges, TemplateRef, ViewChild, ViewContainerRef, HostBinding } from '@angular/core';
+import {
+	Component,
+	Input,
+	OnChanges,
+	TemplateRef,
+	ViewChild,
+	ViewContainerRef,
+	HostBinding,
+	SimpleChanges,
+} from '@angular/core';
 
 @Component({
 	selector: 'app-popup-host',
@@ -16,11 +25,19 @@ export class PopupHostComponent implements OnChanges {
 		return !this.template;
 	}
 
-	ngOnChanges(): void {
-		if (this.template) {
-			this.popupContainer?.createEmbeddedView(this.template);
-		} else {
-			this.popupContainer?.clear();
+	ngOnChanges({ template }: SimpleChanges): void {
+		if (template) {
+			this.updateTemplate(this.template);
 		}
+	}
+
+	private updateTemplate(template: TemplateRef<unknown> | undefined) {
+		this.popupContainer?.clear();
+
+		if (!template) {
+			return;
+		}
+
+		this.popupContainer?.createEmbeddedView(template);
 	}
 }
