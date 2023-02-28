@@ -5,7 +5,7 @@ import { LoadDirection } from './load-direction.enum';
 	selector: '[appScrollLoading]',
 })
 export class ScrollLoadingDirective {
-	private offset = 100;
+	private readonly offset = 100;
 
 	private prevScrolled = 0;
 
@@ -16,17 +16,17 @@ export class ScrollLoadingDirective {
 		const isTopReached = target.scrollTop < this.offset;
 		const isBottomReached = target.scrollHeight - target.clientHeight - target.scrollTop < this.offset;
 
-		const scrollDirectionDown = target.scrollTop < this.prevScrolled;
+		const scrollDirectionUp = target.scrollTop < this.prevScrolled;
 
 		this.prevScrolled = target.scrollTop;
 
-		if (scrollDirectionDown && isTopReached) {
+		if (scrollDirectionUp && isTopReached) {
 			this.loadData.emit(LoadDirection.Top);
 
 			return;
 		}
 
-		if (!scrollDirectionDown && isBottomReached) {
+		if (!scrollDirectionUp && isBottomReached) {
 			this.loadData.emit(LoadDirection.Bottom);
 
 			return;
