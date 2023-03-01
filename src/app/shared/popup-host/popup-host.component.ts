@@ -8,14 +8,15 @@ import { Component, Input, TemplateRef, SimpleChanges, ViewChild, ViewContainerR
 export class PopupHostComponent implements OnChanges {
 	@Input() template: TemplateRef<unknown> | undefined;
 
-	@ViewChild('popup', { static: false, read: ViewContainerRef })
-	popupContainer: ViewContainerRef | undefined;
+	@ViewChild('popup', { static: true, read: ViewContainerRef })
+	private popupContainer: ViewContainerRef | undefined;
 
 	ngOnChanges({ template }: SimpleChanges) {
 		console.log('this.popupContainer', this.popupContainer);
 		console.log('this.template', this.template);
 
 		if (template) {
+			this.popupContainer?.clear();
 			this.insertTemplate(this.template);
 		}
 	}
@@ -25,7 +26,6 @@ export class PopupHostComponent implements OnChanges {
 			return;
 		}
 
-		this.popupContainer?.clear();
 		this.popupContainer?.createEmbeddedView(template);
 	}
 }
