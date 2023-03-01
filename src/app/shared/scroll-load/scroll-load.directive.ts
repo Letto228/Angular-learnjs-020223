@@ -11,7 +11,7 @@ export class ScrollLoadDirective {
 	@HostListener('scroll', ['$event'])
 	onScroll(event: MouseEvent) {
 		const target = event.target as HTMLElement;
-		const bottomPosition = Math.round(target.scrollTop + target.offsetHeight);
+		const bottomPosition = Math.round(target.scrollTop + target.clientHeight);
 		const top = Math.round(target.scrollTop);
 
 		const isOnTop = top <= this.distance;
