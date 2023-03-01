@@ -8,11 +8,10 @@ import { HeaderModule } from './core/header/header.module';
 import { SidenavModule } from './core/sidenav/sidenav.module';
 import { CardModule } from './pages/products-list/card/card.module';
 import { MatListModule } from '@angular/material/list';
-import { PopupHostComponent } from './shared/popup-host/popup-host.component';
 import { PopupHostModule } from './shared/popup-host/popup-host.module';
 
 @NgModule({
-	declarations: [AppComponent, PopupHostComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -24,6 +23,6 @@ import { PopupHostModule } from './shared/popup-host/popup-host.module';
 		PopupHostModule,
 	],
 	bootstrap: [AppComponent],
-	exports: [PopupHostComponent],
+	exports: [],
 })
 export class AppModule {}
