@@ -9,6 +9,7 @@ import { ScrollWithLoadingModule } from '../../shared/scroll-with-loading/scroll
 import { PaginationModule } from '../../shared/pagination/pagination.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ToJsonModule } from '../../shared/to-json/to-json.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 		PaginationModule,
 		MatIconModule,
 		MatButtonModule,
+		ToJsonModule,
 	],
 	exports: [ProductsListComponent],
 })

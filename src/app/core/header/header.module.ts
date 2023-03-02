@@ -9,5 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 	declarations: [HeaderComponent],
 	imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule],
 	exports: [HeaderComponent],
+	providers: [
+		{
+			provide: 'name',
+			useValue: 'HeaderModule',
+		},
+	],
 })
 export class HeaderModule {}

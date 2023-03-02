@@ -1,14 +1,24 @@
-import { Directive, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject, filter, map } from 'rxjs';
+import {
+	Directive,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	SimpleChanges,
+	TemplateRef,
+	ViewContainerRef,
+} from '@angular/core';
+import { BehaviorSubject, filter, map, Subject, Subscription, takeUntil } from 'rxjs';
 import { ICarouselContext } from './carousel-context.interface';
 
 @Directive({
 	selector: '[appCarousel]',
 })
-export class CarouselDirective<T> implements OnChanges, OnInit {
+export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
 	@Input() appCarouselOf: T[] | undefined;
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
+	private readonly destroy$ = new Subject<void>();
 
 	constructor(
 		private readonly viewContainerRef: ViewContainerRef,
@@ -25,6 +35,15 @@ export class CarouselDirective<T> implements OnChanges, OnInit {
 		this.listenCurrentIndexChange();
 	}
 
+	// ngOnDestroy() {
+	// 	// this.currentIndexSubsription.unsubscribe();
+	// 	this.subsription.unsubscribe();
+	// }
+	ngOnDestroy() {
+		this.destroy$.next();
+		this.destroy$.complete();
+	}
+
 	private updateView() {
 		if (!this.appCarouselOf?.length) {
 			this.viewContainerRef.clear();
@@ -35,16 +54,22 @@ export class CarouselDirective<T> implements OnChanges, OnInit {
 		this.currentIndex$.next(0);
 	}
 
+	// private currentIndexSubsription!: Subscription;
+	private readonly subsription = new Subscription();
+
 	private listenCurrentIndexChange() {
+		// this.subsription.add(
 		this.currentIndex$
 			.pipe(
 				map(currentIndex => this.getCurrentContext(currentIndex)),
 				filter(Boolean),
+				takeUntil(this.destroy$),
 			)
 			.subscribe(context => {
 				this.viewContainerRef.clear();
 				this.viewContainerRef.createEmbeddedView(this.templateRef, context);
 			});
+		// );
 	}
 
 	private getCurrentContext(currentIndex: number): ICarouselContext<T> | null {
