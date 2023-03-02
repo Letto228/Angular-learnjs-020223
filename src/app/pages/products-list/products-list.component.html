@@ -1,20 +1,7 @@
-<!-- <ng-template
-	let-productFtomImplicit
-	let-productFtomTemplate="ngIf"
-	[ngIf]="getProducts()"
-	[ngIfElse]="loaderTemplateRef"
-> -->
-<div
-	*ngIf="
-		getProducts() as productFtomTemplate;
-		else loaderTemplateRef;
-		let productFtomImplicit
-	"
-	class="scroll-container"
->
+<div *ngIf="products; else loaderTemplateRef" class="scroll-container">
 	<ng-container
 		*appPagination="
-			let productsGroup of productFtomTemplate;
+			let productsGroup of products;
 			elementsSize: 4;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
@@ -53,38 +40,7 @@
 			</button>
 		</div>
 	</ng-container>
-	<!-- <div
-		*ngIf="getProducts() else loaderTemplateRef; let productFtomTemplate = ngIf; let productFtomImplicit"
-		appScrollWithLoading
-		class="scroll-container"
-		(loadData)="onLoadData($event)"
-	> -->
-	<!-- <ng-template ngFor [ngForOf]="productFtomTemplate" [ngForTrackBy]="trackById" let-product let-for="ngForOf"> -->
-
-	<!-- </ng-template> -->
-
-	<!-- <app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[1]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[2]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[3]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[4]"
-		></app-card> -->
 </div>
-<!-- </ng-template> -->
 
 <ng-template #loaderTemplateRef>
 	<mat-spinner class="loader"></mat-spinner>

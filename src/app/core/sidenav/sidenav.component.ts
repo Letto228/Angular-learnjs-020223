@@ -1,15 +1,4 @@
-import {
-	AfterContentInit,
-	AfterViewInit,
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	Component,
-	ContentChildren,
-	QueryList,
-	ViewChild,
-	ViewContainerRef,
-} from '@angular/core';
-import { MatListItem } from '@angular/material/list';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
@@ -18,19 +7,11 @@ import { MatDrawer } from '@angular/material/sidenav';
 	styleUrls: ['./sidenav.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavComponent implements AfterContentInit {
+export class SidenavComponent {
 	@ViewChild(MatDrawer, { static: true })
 	private matDrawer!: MatDrawer;
 
-	@ContentChildren(MatListItem, { read: ViewContainerRef, descendants: true })
-	matLists!: QueryList<ViewContainerRef>;
-
 	constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
-
-	ngAfterContentInit() {
-		console.log(this.matLists);
-		this.matLists.changes.subscribe(console.log);
-	}
 
 	toggleSidenavOpened() {
 		this.matDrawer.toggle();

@@ -39,7 +39,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit {
 		this.currentIndex$
 			.pipe(
 				map(currentIndex => this.getCurrentContext(currentIndex)),
-				// filter(context => Boolean(context)),
 				filter(Boolean),
 			)
 			.subscribe(context => {
@@ -56,7 +55,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit {
 		return {
 			$implicit: this.appCarouselOf[currentIndex],
 			appCarouselOf: this.appCarouselOf,
-			// next: this.next.bind(this),
 			next: () => {
 				this.next();
 			},

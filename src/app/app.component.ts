@@ -1,4 +1,4 @@
-import { ApplicationRef, ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { applicationConfigMock } from './shared/application-config/application-config.mock';
 
 @Component({
@@ -9,12 +9,4 @@ import { applicationConfigMock } from './shared/application-config/application-c
 })
 export class AppComponent {
 	readonly applicationConfig = applicationConfigMock;
-
-	isBoxShadowActive = false;
-
-	// constructor(
-	// 	private readonly applicationRef: ApplicationRef,
-	// ) {
-	// 	this.applicationRef.tick();
-	// }
 }

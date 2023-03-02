@@ -17,7 +17,6 @@ export class HeaderComponent {
 	menuClick = new EventEmitter<string>();
 
 	onClick() {
-		console.log('Menu click');
 		this.menuClick.emit('click');
 	}
 }
