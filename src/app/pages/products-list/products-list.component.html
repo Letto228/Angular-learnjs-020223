@@ -10,10 +10,49 @@
 		else loaderTemplateRef;
 		let productFtomImplicit
 	"
-	appScrollWithLoading
 	class="scroll-container"
-	(loadData)="onLoadData($event)"
 >
+	<ng-container
+		*appPagination="
+			let productsGroup of productFtomTemplate;
+			elementsSize: 4;
+			let pageIndexes = pageIndexes;
+			let activeIndex = index;
+			let next = next;
+			let back = back;
+			let selectIndex = selectIndex
+		"
+	>
+		<div class="cards-container">
+			<app-card
+				*ngFor="let product of productsGroup; trackBy: trackById"
+				class="card"
+				[product]="product"
+			></app-card>
+		</div>
+
+		<div class="pagination-container">
+			<button mat-icon-button (click)="back()">
+				<mat-icon> chevron_left </mat-icon>
+			</button>
+			<div class="pagination__page-number-container">
+				<button
+					*ngFor="let index of pageIndexes"
+					mat-icon-button
+					class="pagination__page-number"
+					[class.pagination__page-number_active]="
+						activeIndex === index
+					"
+					(click)="selectIndex(index)"
+				>
+					{{ index + 1 }}
+				</button>
+			</div>
+			<button mat-icon-button (click)="next()">
+				<mat-icon> chevron_right </mat-icon>
+			</button>
+		</div>
+	</ng-container>
 	<!-- <div
 		*ngIf="getProducts() else loaderTemplateRef; let productFtomTemplate = ngIf; let productFtomImplicit"
 		appScrollWithLoading
@@ -21,11 +60,7 @@
 		(loadData)="onLoadData($event)"
 	> -->
 	<!-- <ng-template ngFor [ngForOf]="productFtomTemplate" [ngForTrackBy]="trackById" let-product let-for="ngForOf"> -->
-	<app-card
-		*ngFor="let product of productFtomTemplate as for; trackBy: trackById"
-		class="card"
-		[product]="product"
-	></app-card>
+
 	<!-- </ng-template> -->
 
 	<!-- <app-card
