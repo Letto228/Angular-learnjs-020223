@@ -21,19 +21,23 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit() {
 		this.cards.changes.subscribe((cards: QueryList<CardComponent>) => {
 			cards.forEach(value => {
-				console.log('value', value);
+				// console.log('value', value);
 			});
 		});
 	}
 
 	getProducts(): IProduct[] | undefined {
-		console.log('calculateProducts');
+		// console.log('calculateProducts');
 
 		return this.products;
 	}
 
-	onLoadData(direction: string) {
-		console.log(direction);
+	onLoadData(needUpdate: boolean) {
+		if (this.products && needUpdate) {
+			// имитация подгрузки новых продуктов
+			this.products = [...this.products, ...productsMock];
+			console.log('needUpdate', needUpdate, this.products);
+		}
 	}
 
 	@ViewChildren('card', { read: CardComponent })
