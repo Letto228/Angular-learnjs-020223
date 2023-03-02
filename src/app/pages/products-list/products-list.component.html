@@ -1,56 +1,51 @@
-<!-- <ng-template
-	let-productFtomImplicit
-	let-productFtomTemplate="ngIf"
-	[ngIf]="getProducts()"
-	[ngIfElse]="loaderTemplateRef"
-> -->
-<div
-	*ngIf="
-		getProducts() as productFtomTemplate;
-		else loaderTemplateRef;
-		let productFtomImplicit
-	"
-	appScrollWithLoading
-	class="scroll-container"
-	(loadData)="onLoadData($event)"
->
-	<!-- <div
-		*ngIf="getProducts() else loaderTemplateRef; let productFtomTemplate = ngIf; let productFtomImplicit"
-		appScrollWithLoading
-		class="scroll-container"
-		(loadData)="onLoadData($event)"
-	> -->
-	<!-- <ng-template ngFor [ngForOf]="productFtomTemplate" [ngForTrackBy]="trackById" let-product let-for="ngForOf"> -->
-	<app-card
-		*ngFor="let product of productFtomTemplate as for; trackBy: trackById"
-		class="card"
-		[product]="product"
-	></app-card>
-	<!-- </ng-template> -->
+<div *ngIf="getProducts() as productFromTemplate; else loaderTemplateRef">
+	<div
+		*appPagination="
+			let item of products as items;
+			empty: empty;
+			countPerPage: perPage;
+			let chunked = chunkedArr;
+			let chunk = chunk;
+			let i = index;
+			let ctrl = controller
+		"
+	>
+		<div class="list-wrapper">
+			<app-card
+				*ngFor="let el of chunk; trackBy: trackById"
+				class="card"
+				[product]="el"
+			></app-card>
+		</div>
 
-	<!-- <app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[1]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[2]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[3]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[4]"
-		></app-card> -->
+		<div class="pagination">
+			<mat-button-toggle-group [(ngModel)]="perPage">
+				<mat-button-toggle value="3">3</mat-button-toggle>
+				<mat-button-toggle value="5">5</mat-button-toggle>
+				<mat-button-toggle value="10">10</mat-button-toggle>
+			</mat-button-toggle-group>
+			<button mat-icon-button (click)="ctrl.prev()">
+				<mat-icon> chevron_left </mat-icon>
+			</button>
+			<div class="pagination">
+				<div
+					*ngFor="let el of chunked; let ind = index"
+					[class]="
+						i === ind ? 'active pagination-item' : 'pagination-item'
+					"
+					(click)="ctrl.toItem(ind)"
+				>
+					{{ ind + 1 }}
+				</div>
+			</div>
+			<button mat-icon-button (click)="ctrl.next()">
+				<mat-icon> chevron_right </mat-icon>
+			</button>
+		</div>
+	</div>
 </div>
-<!-- </ng-template> -->
 
+<ng-template #empty>No products...</ng-template>
 <ng-template #loaderTemplateRef>
 	<mat-spinner class="loader"></mat-spinner>
 </ng-template>
