@@ -3,22 +3,41 @@
 		<mat-card-title>{{ product?.name }}</mat-card-title>
 		<mat-card-subtitle>{{ product?.price }} $</mat-card-subtitle>
 	</mat-card-header>
+
 	<div
-		*appCarousel="
-			let img of product?.images;
-			let next = next;
-			let previous = previous
+		*appPagination="
+			let item of product?.images as items;
+			let i = index;
+			empty: empty;
+			let ctrl = controller
 		"
-		class="galerey"
+		class="gallery-wrapper"
 	>
-		<button mat-icon-button (click)="previous()">
-			<mat-icon> chevron_left </mat-icon>
-		</button>
-		<img mat-card-image alt="Product photo" [src]="img.url" />
-		<button mat-icon-button (click)="next()">
-			<mat-icon> chevron_right </mat-icon>
-		</button>
+		<div class="gallery">
+			<button mat-icon-button (click)="ctrl.prev()">
+				<mat-icon> chevron_left </mat-icon>
+			</button>
+
+			<img mat-card-image alt="Product photo" [src]="item.url" />
+
+			<button mat-icon-button (click)="ctrl.next()">
+				<mat-icon> chevron_right </mat-icon>
+			</button>
+		</div>
+		<div class="gallery-pagination">
+			<div
+				*ngFor="let el of items; let ind = index"
+				[class]="
+					i === ind
+						? 'active gallery-pagination-item'
+						: 'gallery-pagination-item'
+				"
+				(click)="ctrl.toItem(ind)"
+			></div>
+		</div>
 	</div>
+	<ng-template #empty>Empty Directive...</ng-template>
+
 	<mat-card-content>
 		<p>Отзывы: {{ product?.feedbacksCount }}</p>
 		<div class="raiting">

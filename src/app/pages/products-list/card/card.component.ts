@@ -21,6 +21,8 @@ export class CardComponent implements OnInit, OnChanges {
 
 	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
 
+	public testExpression = false;
+
 	ngOnInit() {
 		console.log('InitCard', this.product?._id);
 	}
