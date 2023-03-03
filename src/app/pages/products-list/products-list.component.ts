@@ -32,12 +32,8 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 		return this.products;
 	}
 
-	onLoadData(needUpdate: boolean) {
-		if (this.products && needUpdate) {
-			// имитация подгрузки новых продуктов
-			this.products = [...this.products, ...productsMock];
-			console.log('needUpdate', needUpdate, this.products);
-		}
+	onLoadData(direction: string) {
+		console.log(direction);
 	}
 
 	@ViewChildren('card', { read: CardComponent })
