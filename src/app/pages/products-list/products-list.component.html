@@ -1,12 +1,6 @@
-<!-- <ng-template
-	let-productFtomImplicit
-	let-productFtomTemplate="ngIf"
-	[ngIf]="getProducts()"
-	[ngIfElse]="loaderTemplateRef"
-> -->
 <div
 	*ngIf="
-		getProducts() as productFtomTemplate;
+		getProducts() as productFromTemplate;
 		else loaderTemplateRef;
 		let productFtomImplicit
 	"
@@ -14,42 +8,47 @@
 	class="scroll-container"
 	(loadData)="onLoadData($event)"
 >
-	<!-- <div
-		*ngIf="getProducts() else loaderTemplateRef; let productFtomTemplate = ngIf; let productFtomImplicit"
-		appScrollWithLoading
-		class="scroll-container"
-		(loadData)="onLoadData($event)"
-	> -->
-	<!-- <ng-template ngFor [ngForOf]="productFtomTemplate" [ngForTrackBy]="trackById" let-product let-for="ngForOf"> -->
-	<app-card
-		*ngFor="let product of productFtomTemplate as for; trackBy: trackById"
-		class="card"
-		[product]="product"
-	></app-card>
-	<!-- </ng-template> -->
+	<ng-container
+		*appPagination="
+			let products of productFromTemplate;
+			count: 4;
+			let curIndex = index;
+			let pageIndexes = pageIndexes;
+			let selectedIndex = selectedIndex;
+			let next = next;
+			let previous = previous
+		"
+	>
+		<div class="cards-container">
+			<app-card
+				*ngFor="let product of products; trackBy: trackById"
+				class="card"
+				[product]="product"
+			></app-card>
+		</div>
 
-	<!-- <app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[1]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[2]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[3]"
-		></app-card>
-		<app-card
-			#card
-			class="card"
-			[product]="productFtomTemplate[4]"
-		></app-card> -->
+		<div class="pagination-container">
+			<button mat-icon-button (click)="previous()">
+				<mat-icon> chevron_left </mat-icon>
+			</button>
+			<div>
+				<div class="page-numbers">
+					<button
+						*ngFor="let index of pageIndexes"
+						mat-icon-button
+						[class.page-number_active]="curIndex === index"
+						(click)="selectedIndex(index)"
+					>
+						{{ index + 1 }}
+					</button>
+				</div>
+			</div>
+			<button mat-icon-button (click)="next()">
+				<mat-icon> chevron_right </mat-icon>
+			</button>
+		</div>
+	</ng-container>
 </div>
-<!-- </ng-template> -->
 
 <ng-template #loaderTemplateRef>
 	<mat-spinner class="loader"></mat-spinner>
