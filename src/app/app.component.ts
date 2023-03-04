@@ -5,10 +5,6 @@ import { applicationConfigMock } from './shared/application-config/application-c
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css'],
-	// template: `
-	// <h1>Application works - template</h1>
-	// `,
-	// styles: ['h1 {color: red}'],
 	encapsulation: ViewEncapsulation.Emulated,
 	interpolation: ['{{', '}}'],
 })
