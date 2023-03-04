@@ -17,7 +17,7 @@ export class ForProductsComponent {
 
 	buyProduct(event: Event) {
 		event.stopPropagation();
-
+		console.log('id = ' + this.product?._id);
 		this.buyProductById.emit(this.product?._id);
 	}
 

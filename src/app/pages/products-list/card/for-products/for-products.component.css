@@ -26,6 +26,11 @@
 	font-family: 'Gill Sans', fantasy;
 }
 
+.card mat-card-actions {
+	display: flex;
+	justify-content: end;
+}
+
 .galerey {
 	height: 100%;
 	display: flex;
@@ -48,28 +53,4 @@
 .star-active {
 	color: #ff0;
 	text-shadow: 0 0 2px black;
-}
-
-.button-buy {
-	background-color: #fff;
-	border: 1px solid #d5d9d9;
-	border-radius: 8px;
-	box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
-	box-sizing: border-box;
-	color: #0f1111;
-	cursor: pointer;
-	font-size: 13px;
-	line-height: 29px;
-	padding: 0 10px 0 11px;
-	width: 100px;
-}
-
-.button-buy:hover {
-	background-color: #f7fafa;
-}
-
-.button-buy:focus {
-	border-color: #008296;
-	box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
-	outline: 0;
 }

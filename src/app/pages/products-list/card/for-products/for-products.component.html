@@ -40,8 +40,8 @@
 		</div>
 	</mat-card-content>
 	<mat-card-actions>
-		<button class="button-buy" mat-button (click)="buyProduct($event)">
-			BUY
-		</button>
+		<app-my-button (click)="buyProduct($event)" body="BUY">
+			КУПИТЬ
+		</app-my-button>
 	</mat-card-actions>
 </mat-card>
