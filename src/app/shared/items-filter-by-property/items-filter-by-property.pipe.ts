@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 	pure: true,
 })
 export class ItemsFilterByPropertyPipe implements PipeTransform {
-	transform<T extends object>(value: T[], searchProperty: string, searchProductName: string | number): T[] {
+	transform<T extends object>(value: T[], searchProperty: string, searchProductName: unknown): T[] {
 		const searchParam = typeof searchProductName === 'string' ? searchProductName.toLowerCase() : searchProductName;
 
 		return value.filter(item => {

@@ -19,8 +19,10 @@ export class ProductsListComponent implements OnInit {
 
 	readonly products$ = this.productsStoreService.products$;
 
-	searchProductName = 2; // для примера, по имени тоже норм ищет
-	searchProperty = 'feedbacksCount';
+	// searchProductName = 2;т
+	// searchProperty = 'feedbacksCount';
+	searchProductName = 'КР'; // для примера
+	searchProperty = 'name';
 
 	// products: IProduct[] | undefined = undefined;
 
