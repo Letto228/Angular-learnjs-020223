@@ -31,10 +31,10 @@ export class ProductsListComponent implements OnInit {
 			this.products = productsMock;
 			this.changeDetectorRef.markForCheck();
 		}, 3000);
-		setTimeout(() => {
-			this.products = productsMock.slice(2);
-			this.changeDetectorRef.markForCheck();
-		}, 6000);
+		// setTimeout(() => {
+		// 	this.products = productsMock.slice(2);
+		// 	this.changeDetectorRef.markForCheck();
+		// }, 6000);
 	}
 
 	getProducts(): IProduct[] | undefined {
