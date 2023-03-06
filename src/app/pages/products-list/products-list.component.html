@@ -10,18 +10,17 @@
 >
 	<ng-container
 		*appPagination="
-			let product of productFtomTemplate;
+			let productGroup of productFtomTemplate;
 			countProductOnPage: 4;
 			let pageCount = pageCount;
-			let currentProductGroup = currentProductGroup;
 			let next = next;
 			let prev = prev
 		"
 	>
 		<app-card
-			*ngFor="let productItem of currentProductGroup; trackBy: trackById"
+			*ngFor="let product of productGroup"
 			class="card"
-			[product]="productItem"
+			[product]="product"
 		>
 		</app-card>
 		<div class="pagination-container">

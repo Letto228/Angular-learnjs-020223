@@ -1,5 +1,5 @@
 import { Directive, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject, filter, map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { IPaginationContext } from './pagination-context.interface';
 
 @Directive({
