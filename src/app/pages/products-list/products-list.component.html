@@ -8,9 +8,10 @@
 	class="scroll-container"
 >
 	<!-- hard -->
-	<!-- <ng-container
+	<ng-container
 		*appPagination="
-			let productsGroup of (products | itemsFilterByProperty : searchProperty : searchProductName);
+			let productsGroup of products
+				| itemsFilterByProperty : searchProperty : searchProductName;
 			elementsSize: 4;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
@@ -18,9 +19,9 @@
 			let back = back;
 			let selectIndex = selectIndex
 		"
-	> -->
-	<!-- easy -->
-	<!-- <ng-container
+	>
+		<!-- easy -->
+		<!-- <ng-container
 		*appPagination="
 			let productsGroup of (products | itemsFilterByName : searchProductName);
 			elementsSize: 4;
@@ -31,7 +32,7 @@
 			let selectIndex = selectIndex
 		"
 	> -->
-	<ng-container
+		<!-- <ng-container
 		*appPagination="
 			let productsGroup of products;
 			elementsSize: 4;
@@ -41,7 +42,7 @@
 			let back = back;
 			let selectIndex = selectIndex
 		"
-	>
+	> -->
 		<!-- {{products?.length}} -->
 		<div class="cards-container">
 			<app-card
