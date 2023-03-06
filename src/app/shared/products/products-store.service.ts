@@ -4,7 +4,9 @@ import { IProduct } from './product.interface';
 import { ProductsApiService } from './products-api.service';
 import { productsMock } from './products.mock';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root',
+})
 export class ProductsStoreService {
 	private readonly productsStore$ = new BehaviorSubject<IProduct[] | null>(null);
 

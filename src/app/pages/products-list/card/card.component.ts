@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { IProduct } from '../../../shared/products/product.interface';
 
 @Component({
@@ -11,6 +11,10 @@ export class CardComponent {
 	@Input() product: IProduct | undefined;
 
 	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
+
+	// constructor(
+	// 	// @Inject('value') private readonly value: any,
+	// ) {}
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();

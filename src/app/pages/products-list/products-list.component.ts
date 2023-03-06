@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Host, Inject, OnInit, Optional, Self, SkipSelf } from '@angular/core';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
 
@@ -7,13 +7,29 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [
+		{
+			provide: 'name',
+			useValue: 'ProductsListComponent',
+		},
+	],
 })
 export class ProductsListComponent implements OnInit {
 	readonly products$ = this.productsStoreService.products$;
 
 	searchValuew = '';
 
-	constructor(private readonly productsStoreService: ProductsStoreService) {}
+	constructor(
+		private readonly productsStoreService: ProductsStoreService,
+		// @Inject('buttons') readonly buttons: string[],
+		@Inject('name') @Self() @Optional() readonly name: string | null,
+		@Inject('name') @SkipSelf() readonly parentName: string,
+		@Inject('name') @Host() @SkipSelf() @Optional() readonly hostName: string | null,
+	) {
+		console.log('name', this.name);
+		console.log('parentName', this.parentName);
+		console.log('hostName', this.hostName);
+	}
 
 	ngOnInit() {
 		this.productsStoreService.loadProducts();

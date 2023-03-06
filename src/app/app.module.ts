@@ -14,7 +14,9 @@ import { ProductsStoreService } from './shared/products/products-store.service';
 import { ProductsApiService } from './shared/products/products-api.service';
 import { BASE_URL } from './shared/base-url/base-url.token';
 import { baseUrl } from './shared/base-url/base-url.const';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
+import { AuthInterceptor } from './shared/auth/auth.interceptor';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -31,13 +33,63 @@ import { HttpClientModule } from '@angular/common/http';
 		HttpClientModule,
 	],
 	providers: [
-		ProductsStoreService,
-		ProductsApiService,
+		// ...HeaderModule.providers,
+		// ProductsStoreService,
+		// ProductsApiService,
+		// {
+		// 	provide: BASE_URL,
+		// 	useValue: baseUrl,
+		// },
 		{
-			provide: BASE_URL,
-			useValue: baseUrl,
+			provide: HTTP_INTERCEPTORS,
+			useClass: BaseUrlInterceptor,
+			multi: true,
+		},
+		// {
+		// 	provide: HTTP_INTERCEPTORS,
+		// 	useClass: AuthInterceptor,
+		// 	multi: true,
+		// },
+		// {
+		// 	provide: 'buttons',
+		// 	useValue: ['1', 'Hi']
+		// }
+		{
+			provide: 'name',
+			useValue: 'AppModule',
 		},
 	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
+// AppModuleInjector === RootInjector;
+
+// NullInjector
+
+// |
+
+// PlatformInjector
+
+// |
+
+// RootInjector(AppModuleInjector)
+
+// |											\
+
+// HeaderModuleInjector By lazy HeaderModule		ProductsListModuleInjector By lazy ProductsListModule (CardModule.providers)
+
+// ElementInjectors
+
+// AppElementInjector
+
+// |						\
+
+// HeaderElementInjector		SidenavElementInjector
+
+// 								|
+
+// 								ProductsListElementInjector
+
+// 								|
+
+// 								CardElementInjector [X]('value')
