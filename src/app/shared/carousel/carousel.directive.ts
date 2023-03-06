@@ -8,7 +8,7 @@ import {
 	TemplateRef,
 	ViewContainerRef,
 } from '@angular/core';
-import { BehaviorSubject, filter, map, Subject, Subscription, takeUntil } from 'rxjs';
+import { BehaviorSubject, filter, map, Subject, takeUntil } from 'rxjs';
 import { ICarouselContext } from './carousel-context.interface';
 
 @Directive({
@@ -35,10 +35,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
 		this.listenCurrentIndexChange();
 	}
 
-	// ngOnDestroy() {
-	// 	// this.currentIndexSubsription.unsubscribe();
-	// 	this.subsription.unsubscribe();
-	// }
 	ngOnDestroy() {
 		this.destroy$.next();
 		this.destroy$.complete();
@@ -54,11 +50,7 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
 		this.currentIndex$.next(0);
 	}
 
-	// private currentIndexSubsription!: Subscription;
-	private readonly subsription = new Subscription();
-
 	private listenCurrentIndexChange() {
-		// this.subsription.add(
 		this.currentIndex$
 			.pipe(
 				map(currentIndex => this.getCurrentContext(currentIndex)),
@@ -69,7 +61,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
 				this.viewContainerRef.clear();
 				this.viewContainerRef.createEmbeddedView(this.templateRef, context);
 			});
-		// );
 	}
 
 	private getCurrentContext(currentIndex: number): ICarouselContext<T> | null {

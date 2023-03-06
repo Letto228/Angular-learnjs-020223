@@ -1,39 +1,12 @@
-<!-- <p>
-	{{user | json}}
-	{{(user$ | async) | json}}
-	{{json.transform(async.transform(user$))}}
-</p> -->
 <div
 	*ngIf="products$ | async as products; else loaderTemplateRef"
 	class="scroll-container"
 >
 	<!-- hard -->
-	<!-- <ng-container
-		*appPagination="
-			let productsGroup of (products | itemsFilterByProperty : searchProperty : searchProductName);
-			elementsSize: 4;
-			let pageIndexes = pageIndexes;
-			let activeIndex = index;
-			let next = next;
-			let back = back;
-			let selectIndex = selectIndex
-		"
-	> -->
-	<!-- easy -->
-	<!-- <ng-container
-		*appPagination="
-			let productsGroup of (products | itemsFilterByName : searchProductName);
-			elementsSize: 4;
-			let pageIndexes = pageIndexes;
-			let activeIndex = index;
-			let next = next;
-			let back = back;
-			let selectIndex = selectIndex
-		"
-	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products;
+			let productsGroup of products
+				| filterByParam : searchValuew : 'name';
 			elementsSize: 4;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
@@ -42,21 +15,12 @@
 			let selectIndex = selectIndex
 		"
 	>
-		<!-- {{products?.length}} -->
 		<div class="cards-container">
 			<app-card
 				*ngFor="let product of productsGroup; trackBy: trackById"
 				class="card"
 				[product]="product"
 			></app-card>
-			<!-- <p
-				*ngFor="let product of products; trackBy: trackById"
-				class="card"
-			> -->
-			<!-- {{getProductJson(product)}} -->
-			<!-- {{product | toJson}} -->
-			<!-- {{ ToJsonPipe.transform(product) }} -->
-			<!-- </p> -->
 		</div>
 
 		<div class="pagination-container">
