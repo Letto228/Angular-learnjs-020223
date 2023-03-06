@@ -33,7 +33,7 @@
 	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products;
+			let productsGroup of products | filterByName : searchProductName;
 			elementsSize: 4;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;

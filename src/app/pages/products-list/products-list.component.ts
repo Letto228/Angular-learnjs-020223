@@ -23,7 +23,7 @@ export class ProductsListComponent implements OnInit {
 
 	readonly products$ = this.productsStoreService.products$;
 
-	searchProductName = '';
+	searchProductName = 'с';
 	searchProperty = 'name';
 
 	// products: IProduct[] | undefined = undefined;
