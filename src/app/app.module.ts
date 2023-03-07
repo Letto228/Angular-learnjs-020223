@@ -28,7 +28,6 @@ import { AuthInterceptor } from './shared/auth/auth.interceptor';
 		SidenavModule,
 		MatListModule,
 		PopupHostModule,
-		ProductsListModule,
 		InsertShadowModule,
 		HttpClientModule,
 	],
