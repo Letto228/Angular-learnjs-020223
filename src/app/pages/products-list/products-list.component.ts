@@ -94,4 +94,14 @@ export class ProductsListComponent implements OnInit {
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
 		return item._id;
 	}
+
+	inputChange(event: Event) {
+		const target = event.target as HTMLInputElement;
+		const value = target.value;
+		if (value) {
+			this.searchProductName = value;
+		} else {
+			this.searchProductName = '';
+		}
+	}
 }

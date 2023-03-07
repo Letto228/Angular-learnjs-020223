@@ -6,8 +6,21 @@ import { IProduct } from '../products/product.interface';
 })
 export class ItemsFilterPipe implements PipeTransform {
 	transform(value: IProduct[], searchProperty: string, searchProductName: string): IProduct[] {
-		console.log(value);
-
-		return value;
+		console.log({ value, searchProductName, searchProperty });
+		return value.filter((el: IProduct) => {
+			if (!searchProductName) {
+				return true;
+			}
+			const currentSearchParam = el[searchProperty as keyof IProduct];
+			if (typeof currentSearchParam === 'string') {
+				return !!(
+					currentSearchParam.toString().toLocaleLowerCase().indexOf(searchProductName.toLocaleLowerCase()) + 1
+				);
+			} else if (typeof currentSearchParam === 'number') {
+				return currentSearchParam.toString() === searchProductName;
+			} else {
+				return true;
+			}
+		});
 	}
 }

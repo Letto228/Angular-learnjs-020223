@@ -7,6 +7,7 @@
 	*ngIf="products$ | async as products; else loaderTemplateRef"
 	class="scroll-container"
 >
+	<input type="text" (input)="inputChange($event)" />
 	<!-- hard -->
 	<ng-container
 		*appPagination="
