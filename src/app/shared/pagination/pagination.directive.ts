@@ -18,7 +18,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 	) {}
 
 	ngOnInit(): void {
-		console.log('ngOnInit', this.appPaginationOf);
+		// console.log('ngOnInit', this.appPaginationOf);
 		this.listenCurrentPageIndex();
 	}
 
@@ -37,7 +37,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 
 			this.currentProductGroup = this.productGroupPicker(countProductOnPage, productList);
 			this.currentPage$.next(0);
-			console.log(this.currentProductGroup);
+			// console.log(this.currentProductGroup);
 		}
 	}
 
@@ -54,7 +54,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 		this.currentPage$
 			.pipe(map(currentPage => this.getCurrnetContext(currentPage, this.currentProductGroup)))
 			.subscribe(context => {
-				console.log(context);
+				// console.log(context);
 				this.viewContainer.clear();
 				this.viewContainer.createEmbeddedView(this.template, context);
 			});
@@ -76,6 +76,9 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 			prev: () => {
 				this.prev();
 			},
+			onClickPageNumber: (event: PointerEvent) => {
+				this.onClickPageNumber(event);
+			},
 		};
 	}
 
@@ -88,16 +91,11 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 	productGroupPicker(countProductOnPage: number, productList: T[]): Array<T[]> {
 		const productGroup: T[][] = [];
 		const repeat = Math.ceil(productList.length / countProductOnPage);
+		const arrayOnWorking = [...productList];
 
 		for (let i = 0; i < repeat; i++) {
-			productGroup.push(productList.splice(0, countProductOnPage));
+			productGroup.push(arrayOnWorking.splice(0, countProductOnPage));
 		}
-
-		// for (let i = 0; i < countProductOnPage; i++) {
-		// 	if (productList[i + slices]) {
-		// 		productGroup.push(productList[i + slices]);
-		// 	}
-		// }
 
 		return productGroup;
 	}
@@ -105,15 +103,21 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 	private next() {
 		console.log('next');
 		const nextIndex =
-			this.currentPage$.value === this.currentProductGroup.length
-				? this.currentPage$.value + 1
-				: this.currentProductGroup.length;
+			this.currentPage$.value === this.currentProductGroup.length - 1
+				? this.currentProductGroup.length - 1
+				: this.currentPage$.value + 1;
+
 		this.currentPage$.next(nextIndex);
 	}
 
 	private prev() {
 		console.log('prev');
-		const previousIndex = this.currentPage$.value === 0 ? this.currentPage$.value - 1 : 0;
+		const previousIndex = this.currentPage$.value === 0 ? 0 : this.currentPage$.value - 1;
 		this.currentPage$.next(previousIndex);
+	}
+
+	private onClickPageNumber(event: PointerEvent) {
+		const index = (event.target as HTMLElement).textContent;
+		this.currentPage$.next(Number(index) - 1);
 	}
 }

@@ -14,7 +14,8 @@
 			countProductOnPage: 4;
 			let pageCount = pageCount;
 			let next = next;
-			let prev = prev
+			let prev = prev;
+			let onClickPageNumber = onClickPageNumber
 		"
 	>
 		<app-card
@@ -25,7 +26,12 @@
 		</app-card>
 		<div class="pagination-container">
 			<button (click)="prev()">Prev</button>
-			<button *ngFor="let index of pageCount">{{ index + 1 }}</button>
+			<button
+				*ngFor="let index of pageCount"
+				(click)="onClickPageNumber($event)"
+			>
+				{{ index + 1 }}
+			</button>
 			<button (click)="next()">Next</button>
 		</div>
 	</ng-container>
