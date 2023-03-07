@@ -1,28 +1,23 @@
 import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
+import { breackPoint, LoadDirection } from './endless-scroll-constants';
 
 @Directive({
 	selector: '[appEndlessScroll]',
 })
 export class EndlessScrollDirective {
-	private breackPoint = { max: 400, middle: 250, min: 100 };
+	@Output() updateChecker = new EventEmitter<LoadDirection>();
 
-	@HostListener('scroll', ['$event.target.scrollTop', '$event.target.scrollHeight', '$event.target.clientHeight'])
-	onScroll(scrollTop: number, scrollHeight: number, clientHeight: number) {
-		const its_time_to_top_upload = scrollTop < this.breackPoint.min;
-		const its_time_to_bottom_upload = scrollHeight - this.breackPoint.min <= clientHeight + scrollTop;
+	@HostListener('scroll', ['$event'])
+	onScroll({ scrollTop, scrollHeight, clientHeight }: HTMLElement) {
+		const itsTimeToTopUpload = scrollTop < breackPoint;
+		const itsTimeToBottomUpload = scrollHeight - breackPoint <= clientHeight + scrollTop;
 
-		if (its_time_to_bottom_upload) {
-			this.updateProductList('bot_update');
+		if (itsTimeToBottomUpload) {
+			this.updateChecker.emit(LoadDirection.Before);
 		}
 
-		if (its_time_to_top_upload) {
-			this.updateProductList('top_update');
+		if (itsTimeToTopUpload) {
+			this.updateChecker.emit(LoadDirection.After);
 		}
-	}
-
-	@Output() updateChecker = new EventEmitter<string>();
-
-	updateProductList(needToUpdate: string) {
-		this.updateChecker.emit(needToUpdate);
 	}
 }
