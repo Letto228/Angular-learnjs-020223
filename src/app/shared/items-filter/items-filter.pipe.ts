@@ -5,19 +5,19 @@ import { IProduct } from '../products/product.interface';
 	name: 'itemsFilterByProperty',
 })
 export class ItemsFilterPipe implements PipeTransform {
-	transform(value: IProduct[], searchProperty: string, searchProductName: string): IProduct[] {
-		console.log({ value, searchProductName, searchProperty });
+	transform(value: IProduct[], searchProperty: keyof IProduct, searchProductName: string): IProduct[] {
+		if (!searchProductName) {
+			return value;
+		}
+
 		return value.filter((el: IProduct) => {
-			if (!searchProductName) {
-				return true;
-			}
-			const currentSearchParam = el[searchProperty as keyof IProduct];
+			const currentSearchParam = el[searchProperty];
 			if (typeof currentSearchParam === 'string') {
-				return !!(
-					currentSearchParam.toString().toLocaleLowerCase().indexOf(searchProductName.toLocaleLowerCase()) + 1
-				);
+				const searchString = searchProductName.toLocaleLowerCase();
+				const productName = currentSearchParam.toLocaleLowerCase();
+				return productName.includes(searchString);
 			} else if (typeof currentSearchParam === 'number') {
-				return currentSearchParam.toString() === searchProductName;
+				return currentSearchParam === Number(searchProductName);
 			} else {
 				return true;
 			}
