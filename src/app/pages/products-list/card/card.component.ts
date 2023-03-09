@@ -12,10 +12,6 @@ export class CardComponent {
 
 	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
 
-	// constructor(
-	// 	// @Inject('value') private readonly value: any,
-	// ) {}
-
 	onProductBuy(event: Event) {
 		event.stopPropagation();
 

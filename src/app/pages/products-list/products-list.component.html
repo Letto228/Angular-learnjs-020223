@@ -1,15 +1,11 @@
-<!-- <button *ngFor="let button of buttons">
-	{{button}}
-</button> -->
 <div
 	*ngIf="products$ | async as products; else loaderTemplateRef"
 	class="scroll-container"
 >
-	<!-- hard -->
 	<ng-container
 		*appPagination="
 			let productsGroup of products
-				| filterByParam : searchValuew : 'name';
+				| filterByParam : searchValue : 'name';
 			elementsSize: 4;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;

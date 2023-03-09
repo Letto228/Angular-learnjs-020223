@@ -12,7 +12,6 @@ export class BaseUrlInterceptor implements HttpInterceptor {
 			url: this.baseUrl + request.url,
 		});
 
-		// next.handle(newRequest) === AuthInterceptor.intercept(newRequest, next)
 		return next.handle(newRequest).pipe();
 	}
 }
