@@ -98,10 +98,6 @@ export class ProductsListComponent implements OnInit {
 	inputChange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		const value = target.value;
-		if (value) {
-			this.searchProductName = value;
-		} else {
-			this.searchProductName = '';
-		}
+		this.searchProductName = value ? value : '';
 	}
 }
