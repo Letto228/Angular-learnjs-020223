@@ -9,8 +9,8 @@ import { ScrollWithLoadingModule } from '../../shared/scroll-with-loading/scroll
 import { PaginationModule } from '../../shared/pagination/pagination.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ToJsonModule } from '../../shared/to-json/to-json.module';
 import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-param.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -24,6 +24,7 @@ import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-para
 		MatIconModule,
 		MatButtonModule,
 		FilterByParamModule,
+		RouterModule,
 	],
 	exports: [ProductsListComponent],
 })

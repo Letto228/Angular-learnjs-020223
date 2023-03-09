@@ -20,12 +20,18 @@
 	<div>
 		<h1>{{ product.name }}</h1>
 		<nav mat-tab-nav-bar [tabPanel]="tabPanel">
-			<a mat-tab-link> description </a>
-			<a mat-tab-link> type </a>
+			<a mat-tab-link routerLink="description">
+				<!-- <a
+				mat-tab-link
+				(click)="navigateToDescriptionTab()"
+			> -->
+				description
+			</a>
+			<a mat-tab-link routerLink="type"> type </a>
 		</nav>
 		<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 
-		<!-- navigation -->
+		<router-outlet></router-outlet>
 	</div>
 </ng-container>
 

@@ -1,28 +1,21 @@
-import {
-	Directive,
-	Input,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	SimpleChanges,
-	TemplateRef,
-	ViewContainerRef,
-} from '@angular/core';
-import { BehaviorSubject, filter, map, Subject, takeUntil } from 'rxjs';
+import { Directive, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
+import { BehaviorSubject, filter, map, takeUntil } from 'rxjs';
+import { DestroyService } from '../destroy/destroy.service';
 import { ICarouselContext } from './carousel-context.interface';
 
 @Directive({
 	selector: '[appCarousel]',
+	providers: [DestroyService],
 })
-export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
+export class CarouselDirective<T> implements OnChanges, OnInit {
 	@Input() appCarouselOf: T[] | undefined;
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
-	private readonly destroy$ = new Subject<void>();
 
 	constructor(
 		private readonly viewContainerRef: ViewContainerRef,
 		private readonly templateRef: TemplateRef<ICarouselContext<T>>,
+		private readonly destroy$: DestroyService,
 	) {}
 
 	ngOnChanges({ appCarouselOf }: SimpleChanges) {
@@ -33,11 +26,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.listenCurrentIndexChange();
-	}
-
-	ngOnDestroy() {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 
 	private updateView() {

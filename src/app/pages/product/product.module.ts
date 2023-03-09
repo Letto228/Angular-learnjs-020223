@@ -8,10 +8,19 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DescriptionComponent } from './description/description.component';
 import { TypeComponent } from './type/type.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [ProductComponent, DescriptionComponent, TypeComponent],
-	imports: [CommonModule, CarouselModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatTabsModule],
+	imports: [
+		CommonModule,
+		CarouselModule,
+		MatButtonModule,
+		MatIconModule,
+		MatProgressSpinnerModule,
+		MatTabsModule,
+		RouterModule,
+	],
 	exports: [ProductComponent],
 })
 export class ProductModule {}

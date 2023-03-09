@@ -9,6 +9,7 @@ import {
 	ViewContainerRef,
 } from '@angular/core';
 import { BehaviorSubject, map, Subject, takeUntil } from 'rxjs';
+import { DestroyService } from '../destroy/destroy.service';
 import { getGroupedItems } from './get-grouped-items';
 
 interface IPaginationContext<T> {
@@ -23,19 +24,20 @@ interface IPaginationContext<T> {
 
 @Directive({
 	selector: '[appPagination]',
+	providers: [DestroyService],
 })
-export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
+export class PaginationDirective<T> implements OnInit, OnChanges {
 	@Input() appPaginationElementsSize: string | number = 1;
 	@Input() appPaginationOf: T[] | undefined | null;
 
 	private groupedItems: Array<T[]> = [];
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
-	private readonly destroy$ = new Subject<void>();
 
 	constructor(
 		private readonly viewContainerRef: ViewContainerRef,
 		private readonly templateRef: TemplateRef<IPaginationContext<T>>,
+		private readonly destroy$: DestroyService,
 	) {}
 
 	ngOnChanges({ appPaginationOf, appPaginationElementsSize }: SimpleChanges): void {
@@ -53,11 +55,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 
 	ngOnInit() {
 		this.listenCurrentIndexChange();
-	}
-
-	ngOnDestroy() {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 
 	private listenCurrentIndexChange() {
