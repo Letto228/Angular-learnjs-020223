@@ -1,6 +1,6 @@
 export interface IPaginationContext<T> {
 	$implicit: T[];
 	appPaginationOf: T[];
-	pageCount: Array<number>;
+	pageIndexes: Array<number>;
 	currentPage: number;
 }

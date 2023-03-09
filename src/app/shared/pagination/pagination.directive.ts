@@ -1,11 +1,22 @@
-import { Directive, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import {
+	Directive,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	SimpleChanges,
+	TemplateRef,
+	ViewContainerRef,
+} from '@angular/core';
+import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { IPaginationContext } from './pagination-context.interface';
+import { productGroupPicker } from './product-group-picker.utils';
 
 @Directive({
 	selector: '[appPagination]',
 })
-export class PaginationDirective<T> implements OnInit, OnChanges {
+export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
+	private readonly subscription = new Subscription();
 	private readonly currentPage$ = new BehaviorSubject<number>(0);
 	private currentProductGroup: Array<T[]> = [];
 
@@ -23,41 +34,32 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 	}
 
 	ngOnChanges({ appPaginationCountProductOnPage, appPaginationOf }: SimpleChanges): void {
-		if (appPaginationOf) {
-			this.updateView();
-		}
 		if (appPaginationCountProductOnPage || appPaginationOf) {
 			if (!this.appPaginationOf?.length) {
 				this.viewContainer.clear();
 				return;
 			}
 
-			const countProductOnPage: number = this.appPaginationCountProductOnPage,
-				productList: T[] = this.appPaginationOf;
-
-			this.currentProductGroup = this.productGroupPicker(countProductOnPage, productList);
+			this.currentProductGroup = productGroupPicker(this.appPaginationCountProductOnPage, this.appPaginationOf);
 			this.currentPage$.next(0);
 			// console.log(this.currentProductGroup);
 		}
 	}
 
-	updateView(directionIndex = 0) {
-		if (!this.appPaginationOf?.length) {
-			this.viewContainer.clear();
-			return;
-		}
-
-		this.currentPage$.next(directionIndex);
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	private listenCurrentPageIndex() {
-		this.currentPage$
-			.pipe(map(currentPage => this.getCurrnetContext(currentPage, this.currentProductGroup)))
-			.subscribe(context => {
-				// console.log(context);
-				this.viewContainer.clear();
-				this.viewContainer.createEmbeddedView(this.template, context);
-			});
+		this.subscription.add(
+			this.currentPage$
+				.pipe(map(currentPage => this.getCurrnetContext(currentPage, this.currentProductGroup)))
+				.subscribe(context => {
+					// console.log(context);
+					this.viewContainer.clear();
+					this.viewContainer.createEmbeddedView(this.template, context);
+				}),
+		);
 	}
 
 	private getCurrnetContext(currentPage: number, currentProductGroup: Array<T[]>) {
@@ -68,7 +70,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 		return {
 			$implicit: currentProductGroup[currentPage],
 			appPaginationOf: this.appPaginationOf,
-			pageCount: this.pageCountCalculate(this.appPaginationOf.length, this.appPaginationCountProductOnPage),
+			pageIndexes: this.pageCountCalculate(currentProductGroup),
 			currentPage: this.currentPage$.value,
 			next: () => {
 				this.next();
@@ -76,28 +78,14 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 			prev: () => {
 				this.prev();
 			},
-			onClickPageNumber: (event: PointerEvent) => {
-				this.onClickPageNumber(event);
+			navigateToPage: (pageNumber: number) => {
+				this.navigateToPage(pageNumber);
 			},
 		};
 	}
 
-	pageCountCalculate(arrayLength: number, itemsOnPage: number): Array<number> {
-		return Array(Math.ceil(arrayLength / itemsOnPage))
-			.fill('')
-			.map((_, index) => index);
-	}
-
-	productGroupPicker(countProductOnPage: number, productList: T[]): Array<T[]> {
-		const productGroup: T[][] = [];
-		const repeat = Math.ceil(productList.length / countProductOnPage);
-		const arrayOnWorking = [...productList];
-
-		for (let i = 0; i < repeat; i++) {
-			productGroup.push(arrayOnWorking.splice(0, countProductOnPage));
-		}
-
-		return productGroup;
+	private pageCountCalculate(setProductByGroup: T[][]): Array<number> {
+		return setProductByGroup.map((_, index) => index);
 	}
 
 	private next() {
@@ -116,8 +104,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 		this.currentPage$.next(previousIndex);
 	}
 
-	private onClickPageNumber(event: PointerEvent) {
-		const index = (event.target as HTMLElement).textContent;
-		this.currentPage$.next(Number(index) - 1);
+	private navigateToPage(pageNumber: number) {
+		this.currentPage$.next(pageNumber);
 	}
 }

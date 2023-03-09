@@ -12,10 +12,11 @@
 		*appPagination="
 			let productGroup of productFtomTemplate;
 			countProductOnPage: 4;
-			let pageCount = pageCount;
+			let pageIndexes = pageIndexes;
 			let next = next;
 			let prev = prev;
-			let onClickPageNumber = onClickPageNumber
+			let navigateToPage = navigateToPage;
+			let currentPage = currentPage
 		"
 	>
 		<app-card
@@ -27,8 +28,9 @@
 		<div class="pagination-container">
 			<button (click)="prev()">Prev</button>
 			<button
-				*ngFor="let index of pageCount"
-				(click)="onClickPageNumber($event)"
+				*ngFor="let index of pageIndexes"
+				[style.backgroundColor]="currentPage === index ? 'red' : ''"
+				(click)="navigateToPage(index)"
 			>
 				{{ index + 1 }}
 			</button>
