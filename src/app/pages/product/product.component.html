@@ -2,10 +2,9 @@
 	<div>
 		<div
 			*appCarousel="
-				product.images;
-				let currentImage;
+				let currentImage of product.images;
 				let next = next;
-				let back = back
+				let previous = previous
 			"
 			class="galerey"
 		>
@@ -13,17 +12,18 @@
 				<mat-icon> chevron_left </mat-icon>
 			</button>
 			<img mat-card-image alt="Product photo" [src]="currentImage.url" />
-			<button mat-icon-button (click)="back()">
+			<button mat-icon-button (click)="previous()">
 				<mat-icon> chevron_right </mat-icon>
 			</button>
 		</div>
 	</div>
 	<div>
 		<h1>{{ product.name }}</h1>
-		<nav mat-tab-nav-bar>
+		<nav mat-tab-nav-bar [tabPanel]="tabPanel">
 			<a mat-tab-link> description </a>
 			<a mat-tab-link> type </a>
 		</nav>
+		<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 
 		<!-- navigation -->
 	</div>

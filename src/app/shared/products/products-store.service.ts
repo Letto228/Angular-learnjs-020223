@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IProduct } from './product.interface';
 import { ProductsApiService } from './products-api.service';
-import { productsMock } from './products.mock';
 
 @Injectable({
 	providedIn: 'root',
