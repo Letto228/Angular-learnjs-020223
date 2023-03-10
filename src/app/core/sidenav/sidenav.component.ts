@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { CategoriesStoreService } from '../../shared/categories/categories-store.service';
 
 @Component({
 	selector: 'app-sidenav',
@@ -8,10 +9,19 @@ import { MatDrawer } from '@angular/material/sidenav';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavComponent {
-	@ViewChild(MatDrawer, { static: true })
+	readonly categories$ = this.categoriesStoreService.categories$;
+
+	@ViewChild(MatDrawer, { read: MatDrawer, static: true })
 	private matDrawer!: MatDrawer;
 
-	constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+	constructor(
+		private changeDetectorRef: ChangeDetectorRef,
+		private readonly categoriesStoreService: CategoriesStoreService,
+	) {}
+
+	ngOnInit() {
+		this.categoriesStoreService.loadCategories();
+	}
 
 	toggleSidenavOpened() {
 		this.matDrawer.toggle();
