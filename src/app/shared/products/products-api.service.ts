@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, debounceTime, delay, map, Observable, of } from 'rxjs';
+import { getParamsFromObject } from '../params/get-params-from-object';
 import { IProduct } from './product.interface';
 import { IProductsDto } from './products.dto';
 
@@ -10,11 +11,19 @@ import { IProductsDto } from './products.dto';
 export class ProductsApiService {
 	constructor(private readonly httpClient: HttpClient) {}
 
-	getProducts$(): Observable<IProduct[]> {
-		return this.httpClient.get<IProductsDto>(`/products/suggestion`).pipe(map(({ data }) => data.items));
+	getProducts$(subCategoryId?: string | null): Observable<IProduct[]> {
+		return this.httpClient
+			.get<IProductsDto>(`/products`, {
+				params: getParamsFromObject({ subCat: subCategoryId }),
+			})
+			.pipe(map(({ data }) => data.items));
 	}
 
 	getProduct$(id: string): Observable<IProduct | undefined> {
-		return this.httpClient.get<{ data: IProduct }>(`/products/${id}`).pipe(map(({ data }) => data));
+		return this.httpClient.get<{ data: IProduct }>(`/products/${id}`).pipe(
+			map(({ data }) => data),
+			delay(2000),
+			catchError(() => of(undefined)),
+		);
 	}
 }

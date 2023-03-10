@@ -9,6 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DescriptionComponent } from './description/description.component';
 import { TypeComponent } from './type/type.component';
 import { RouterModule } from '@angular/router';
+import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({
 	declarations: [ProductComponent, DescriptionComponent, TypeComponent],
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
 		MatProgressSpinnerModule,
 		MatTabsModule,
 		RouterModule,
+		ProductRoutingModule,
 	],
 	exports: [ProductComponent],
 })

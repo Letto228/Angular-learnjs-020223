@@ -8,6 +8,12 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	// providers: [
+	// 	{
+	// 		provide: 'name',
+	// 		useValue: 'ProductsListComponent',
+	// 	}
+	// ]
 })
 export class ProductsListComponent implements OnInit {
 	readonly products$ = this.productsStoreService.products$;

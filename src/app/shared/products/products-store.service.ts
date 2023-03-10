@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { IProduct } from './product.interface';
 import { ProductsApiService } from './products-api.service';
 
@@ -8,6 +8,7 @@ import { ProductsApiService } from './products-api.service';
 })
 export class ProductsStoreService {
 	private readonly productsStore$ = new BehaviorSubject<IProduct[] | null>(null);
+	private readonly currentProductStore$ = new BehaviorSubject<IProduct | null>(null);
 
 	constructor(private readonly productsApiService: ProductsApiService) {}
 
@@ -15,9 +16,26 @@ export class ProductsStoreService {
 		return this.productsStore$.asObservable();
 	}
 
-	loadProducts() {
-		this.productsApiService.getProducts$().subscribe(products => {
+	get currentProduct$(): Observable<IProduct | null> {
+		return this.currentProductStore$.asObservable();
+	}
+
+	loadProducts(subcategoryId?: string | null) {
+		this.productsApiService.getProducts$(subcategoryId).subscribe(products => {
 			this.productsStore$.next(products);
 		});
+	}
+
+	loadProduct(productId: string) {
+		const productPreview = this.productsStore$.value?.find(({ _id }) => _id === productId);
+
+		this.currentProductStore$.next(productPreview || null);
+
+		this.productsApiService
+			.getProduct$(productId)
+			.pipe(filter(Boolean))
+			.subscribe(product => {
+				this.currentProductStore$.next(product);
+			});
 	}
 }

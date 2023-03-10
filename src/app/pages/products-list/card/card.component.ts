@@ -6,11 +6,21 @@ import { IProduct } from '../../../shared/products/product.interface';
 	templateUrl: './card.component.html',
 	styleUrls: ['./card.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	// providers: [
+	// 	{
+	// 		provide: 'name',
+	// 		useValue: 'CardComponent',
+	// 	}
+	// ],
 })
 export class CardComponent {
 	@Input() product: IProduct | undefined;
 
 	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
+
+	constructor(@Inject('name') private readonly name: string) {
+		console.log(this.name);
+	}
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();

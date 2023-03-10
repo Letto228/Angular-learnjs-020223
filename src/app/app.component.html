@@ -3,15 +3,6 @@
 	(menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
 <app-sidenav #sidenav>
-	<ng-container ngProjectAs="sidenav">
-		<h2>{{ applicationConfig.title }}</h2>
-		<mat-list role="list">
-			<mat-list-item role="listitem"> Item 1 </mat-list-item>
-			<mat-list-item role="listitem"> Item 2 </mat-list-item>
-			<mat-list-item role="listitem"> Item 3 </mat-list-item>
-		</mat-list>
-	</ng-container>
-
 	<router-outlet></router-outlet>
 </app-sidenav>
 
