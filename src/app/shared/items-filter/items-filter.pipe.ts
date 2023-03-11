@@ -1,25 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IProduct } from '../products/product.interface';
 
 @Pipe({
 	name: 'itemsFilterByProperty',
 })
 export class ItemsFilterPipe implements PipeTransform {
-	transform(value: IProduct[], searchProperty: keyof IProduct, searchProductName: string): IProduct[] {
-		if (!searchProductName) {
+	transform<T, P extends keyof T>(value: T[], searchProperty: P, searchValue: T[P]): T[] {
+		if (!searchValue) {
 			return value;
 		}
 
-		return value.filter((el: IProduct) => {
+		return value.filter((el: T) => {
 			const currentSearchParam = el[searchProperty];
 			if (typeof currentSearchParam === 'string') {
-				const searchString = searchProductName.toLocaleLowerCase();
+				const searchString = (searchValue as string).toLocaleLowerCase();
 				const productName = currentSearchParam.toLocaleLowerCase();
 				return productName.includes(searchString);
-			} else if (typeof currentSearchParam === 'number') {
-				return currentSearchParam === Number(searchProductName);
 			} else {
-				return true;
+				return currentSearchParam === searchValue;
 			}
 		});
 	}

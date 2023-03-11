@@ -24,7 +24,7 @@ export class ProductsListComponent implements OnInit {
 	readonly products$ = this.productsStoreService.products$;
 
 	searchProductName = '';
-	searchProperty: keyof IProduct = 'name';
+	readonly searchProperty: keyof IProduct = 'name';
 
 	// products: IProduct[] | undefined = undefined;
 
