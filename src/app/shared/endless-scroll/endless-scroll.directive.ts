@@ -9,8 +9,7 @@ export class EndlessScrollDirective {
 	@Output() updateChecker = new EventEmitter<LoadDirection>();
 
 	@HostListener('scroll', ['$event.target'])
-	onScroll(eventTarget: EventTarget) {
-		const { scrollTop, scrollHeight, clientHeight } = eventTarget as HTMLElement;
+	onScroll({ scrollTop, scrollHeight, clientHeight }: IEventProps) {
 		const itsTimeToTopUpload = scrollTop < breackPoint;
 		const itsTimeToBottomUpload = scrollHeight - breackPoint <= clientHeight + scrollTop;
 
