@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
+import { map, tap, switchMap } from 'rxjs';
 
 @Component({
 	selector: 'app-products-list',
@@ -15,16 +16,22 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 	// 	}
 	// ]
 })
-export class ProductsListComponent implements OnInit {
-	readonly products$ = this.productsStoreService.products$;
+export class ProductsListComponent {
+	readonly products$ = this.activatedRoute.paramMap.pipe(
+		map(paramMap => paramMap.get('subcategory')),
+		tap(subcategoryId => {
+			this.productsStoreService.loadProducts(subcategoryId);
+		}),
+		switchMap(() => this.productsStoreService.products$),
+	);
 
 	searchValue = '';
 
-	constructor(private readonly productsStoreService: ProductsStoreService, private readonly router: Router) {}
-
-	ngOnInit() {
-		this.productsStoreService.loadProducts();
-	}
+	constructor(
+		private readonly productsStoreService: ProductsStoreService,
+		private readonly router: Router,
+		private readonly activatedRoute: ActivatedRoute,
+	) {}
 
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
 		return item._id;
