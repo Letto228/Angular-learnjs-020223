@@ -26,6 +26,9 @@ export class ProductsListComponent implements OnInit {
 	searchProductName = '';
 	searchProperty = 'name';
 
+	// searchProductName = 4;
+	// searchProperty = 'rating';
+
 	// products: IProduct[] | undefined = undefined;
 
 	// user = {
