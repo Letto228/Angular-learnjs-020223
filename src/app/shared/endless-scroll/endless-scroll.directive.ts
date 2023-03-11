@@ -8,8 +8,9 @@ import { IEventProps } from './endless-scroll.interface';
 export class EndlessScrollDirective {
 	@Output() updateChecker = new EventEmitter<LoadDirection>();
 
-	@HostListener('scroll', ['$event'])
-	onScroll({ scrollTop, scrollHeight, clientHeight }: IEventProps) {
+	@HostListener('scroll', ['$event.target'])
+	onScroll(eventTarget: EventTarget) {
+		const { scrollTop, scrollHeight, clientHeight } = eventTarget as HTMLElement;
 		const itsTimeToTopUpload = scrollTop < breackPoint;
 		const itsTimeToBottomUpload = scrollHeight - breackPoint <= clientHeight + scrollTop;
 
