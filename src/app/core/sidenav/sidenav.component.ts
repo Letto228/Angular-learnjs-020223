@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../shared/products/product.interface';
-import { productMock } from '../../shared/products/product.mock';
 
 @Component({
 	selector: 'app-sidenav',
@@ -8,15 +7,13 @@ import { productMock } from '../../shared/products/product.mock';
 	styleUrls: ['./sidenav.component.css'],
 })
 export class SidenavComponent {
-	@Input()
-	isOpened = true;
+	@Input() isOpened = true;
 
-	@Output()
-	isOpenedChange = new EventEmitter<boolean>();
+	@Input() products: IProduct;
 
-	public products: IProduct = productMock;
+	@Output() isOpenedChange = new EventEmitter<boolean>();
 
-	public buyProduct(event: IProduct) {
-		console.log('покупка товара', event);
+	toggleSidenavOpened() {
+		this.isOpenedChange.emit(!this.isOpened);
 	}
 }

@@ -9,8 +9,8 @@ import { SidenavModule } from './core/sidenav/sidenav.module';
 import { ProductListModule } from './pages/products-list/product-list.module';
 
 @NgModule({
-	declarations: [AppComponent], //const
-	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, SidenavModule, ProductListModule], // import {...} from '...'
+	declarations: [AppComponent],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, SidenavModule, ProductListModule],
 	// exports: [], // export const
 	// providers: [],
 	bootstrap: [AppComponent],

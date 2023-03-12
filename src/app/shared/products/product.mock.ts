@@ -6,7 +6,7 @@ export const productMock: IProduct = {
 	subCategory: 'planshety-elektronnye-knigi',
 	images: [
 		{
-			url: 'https://c.dns-shop.ru/thumbx/st1/fit/0/0/dff090e667cd39dd397678905df52de5/6c3e7aab802deb19513c7cf55dd7c527efb9127d8aba2ed90f3d224577137fe2.jpg',
+			url: 'https://c.dns-shop.ru/thumb/st1/fit/0/0/dff090e667cd39dd397678905df52de5/6c3e7aab802deb19513c7cf55dd7c527efb9127d8aba2ed90f3d224577137fe2.jpg',
 			source: '6c3e7aab802deb19513c7cf55dd7c527efb9127d8aba2ed90f3d224577137fe2.jpg',
 		},
 		{

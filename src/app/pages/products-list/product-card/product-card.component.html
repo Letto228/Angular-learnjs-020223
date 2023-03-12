@@ -1,19 +1,33 @@
-<mat-card class="example-card">
+<mat-card class="card">
 	<mat-card-header>
-		<!--    <div mat-card-avatar class="example-header-image"></div>-->
-		<mat-card-title>{{ products?.name }}</mat-card-title>
-		<mat-card-subtitle>{{ products?.subCategory }}</mat-card-subtitle>
+		<mat-card-title>{{ product?.name }}</mat-card-title>
+		<mat-card-subtitle>{{ product?.price }} $</mat-card-subtitle>
 	</mat-card-header>
-	<img mat-card-lg-image alt="Product card" class="center" [src]="path" />
+	<div class="galerey">
+		<button mat-icon-button>
+			<mat-icon> chevron_left </mat-icon>
+		</button>
+		<img
+			mat-card-image
+			alt="Product photo"
+			[src]="product?.images?.[0]?.url"
+		/>
+		<button mat-icon-button>
+			<mat-icon> chevron_right </mat-icon>
+		</button>
+	</div>
 	<mat-card-content>
-		<p>This card has divider and indeterminate progress as footer</p>
-		<p>{{ longText }}</p>
-		<mat-divider></mat-divider>
+		<p>Отзывы: {{ product?.feedbacksCount }}</p>
+		<div class="raiting">
+			Рейтинг:
+			<mat-icon [class.star-active]="isStarActive(1)"> star </mat-icon>
+			<mat-icon [class.star-active]="isStarActive(2)"> star </mat-icon>
+			<mat-icon [class.star-active]="isStarActive(3)"> star </mat-icon>
+			<mat-icon [class.star-active]="isStarActive(4)"> star </mat-icon>
+			<mat-icon [class.star-active]="isStarActive(5)"> star </mat-icon>
+		</div>
 	</mat-card-content>
-	<mat-card-actions>
-		<button mat-button (click)="buyBtn()">BUY</button>
+	<mat-card-actions class="mat-card-actions-align-end">
+		<button mat-button (click)="onProductBuy($event)">Buy</button>
 	</mat-card-actions>
-	<mat-card-footer>
-		<!--    <mat-progress-bar mode="indeterminate"></mat-progress-bar>-->
-	</mat-card-footer>
 </mat-card>

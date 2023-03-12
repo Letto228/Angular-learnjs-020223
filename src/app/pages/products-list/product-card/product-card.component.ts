@@ -1,29 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IProduct } from 'src/app/shared/products/product.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IProduct } from '../../../shared/products/product.interface';
 
 @Component({
 	selector: 'app-product-card',
 	templateUrl: './product-card.component.html',
 	styleUrls: ['./product-card.component.css'],
 })
-export class ProductCardComponent implements OnInit {
-	@Input() public products: IProduct;
+export class ProductCardComponent {
+	@Input() product: IProduct | undefined;
 
-	@Output() public buyProduct: EventEmitter<IProduct> = new EventEmitter<IProduct>();
+	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
 
-	public path: string;
+	onProductBuy(event: Event) {
+		event.stopPropagation();
 
-	public buyBtn() {
-		if (this.products) {
-			this.buyProduct.emit(this.products);
-		}
+		this.productBuy.emit(this.product?._id);
 	}
 
-	public ngOnInit() {
-		this.path = this.products?.images[1].url;
+	isStarActive(starIndex: number): boolean {
+		return Boolean(this.product && this.product.rating >= starIndex);
 	}
-
-	longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
 }
