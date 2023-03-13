@@ -9,12 +9,6 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	// providers: [
-	// 	{
-	// 		provide: 'name',
-	// 		useValue: 'ProductsListComponent',
-	// 	}
-	// ]
 })
 export class ProductsListComponent {
 	readonly products$ = this.activatedRoute.paramMap.pipe(
@@ -33,16 +27,7 @@ export class ProductsListComponent {
 		private readonly activatedRoute: ActivatedRoute,
 	) {}
 
-	// ngOnInit() {
-	// 	this.productsStoreService.loadProducts();
-	// }
-
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
 		return item._id;
-	}
-
-	navigateToProduct() {
-		// this.router.navigate(['/product', 'id']);
-		this.router.navigateByUrl('/product/id');
 	}
 }

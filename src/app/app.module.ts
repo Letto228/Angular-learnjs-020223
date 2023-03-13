@@ -31,10 +31,6 @@ import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
 			useClass: BaseUrlInterceptor,
 			multi: true,
 		},
-		{
-			provide: 'name',
-			useValue: 'AppModule',
-		},
 	],
 	bootstrap: [AppComponent],
 })

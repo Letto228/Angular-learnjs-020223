@@ -25,12 +25,6 @@ import { ProductsListRoutingModule } from './products-list-routing.module';
 		RouterModule,
 		ProductsListRoutingModule,
 	],
-	providers: [
-		{
-			provide: 'name',
-			useValue: 'ProductsListModule',
-		},
-	],
 	exports: [ProductsListComponent],
 })
 export class ProductsListModule {}

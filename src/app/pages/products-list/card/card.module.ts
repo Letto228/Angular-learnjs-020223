@@ -10,11 +10,5 @@ import { CarouselModule } from '../../../shared/carousel/carousel.module';
 	declarations: [CardComponent],
 	imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, CarouselModule],
 	exports: [CardComponent],
-	providers: [
-		// {
-		// 	provide: 'name',
-		// 	useValue: 'CardModule',
-		// }
-	],
 })
 export class CardModule {}

@@ -8,13 +8,7 @@ import { IApplicationConfig } from '../../shared/application-config/application-
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-	@Input()
-	applicationConfig: IApplicationConfig | undefined;
+	@Input() applicationConfig: IApplicationConfig | undefined;
 
-	@Output()
-	menuClick = new EventEmitter<string>();
-
-	onClick() {
-		this.menuClick.emit('click');
-	}
+	@Output() menuClick = new EventEmitter<void>();
 }

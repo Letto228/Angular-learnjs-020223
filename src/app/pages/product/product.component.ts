@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, of, switchMap, tap } from 'rxjs';
-import { productsMock } from '../../shared/products/products.mock';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
-	// readonly product$ = of(productsMock[0]);
 	readonly product$ = this.activatedRoute.paramMap.pipe(
 		map(paramMap => paramMap.get('id')),
 		filter(Boolean),
@@ -23,32 +21,6 @@ export class ProductComponent {
 
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
-		private readonly activatedRoute: ActivatedRoute, // private readonly router: Router,
+		private readonly activatedRoute: ActivatedRoute,
 	) {}
-	// constructor(
-	// private readonly router: Router,
-	// 	private readonly activatedRoute: ActivatedRoute,
-	// ) {}
-
-	// ngOnInit() {
-	// 	console.log(this.activatedRoute.snapshot.params['id']);
-
-	// 	setTimeout(() => {
-	// 		this.router.navigate(
-	// 			['/product', 'gejmpad-microsoft-xbox-one-sports-blue-special-edition-sinij'],
-	// 		)
-	// 	},3000)
-	// }
-
-	// navigateToDescriptionTab() {
-	// 	// console.log(this.activatedRoute);
-
-	// 	// this.router.navigate(['./description'], {relativeTo: this.activatedRoute});
-
-	// 	const urlTree = this.router.createUrlTree(['./description'], {relativeTo: this.activatedRoute, queryParams: {q: '123'}});
-
-	// 	console.log(urlTree, urlTree.toString());
-
-	// 	this.router.navigateByUrl(urlTree.toString());
-	// }
 }
