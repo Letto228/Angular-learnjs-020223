@@ -1,4 +1,32 @@
 <!-- <app-filter [brands]="brands$ | async"></app-filter> -->
+
+<!-- <app-counter-input
+	[ngModel]="200"
+	#ngModelCounter="ngModel"
+	(ngModelChange)="onCounterChange($event)"
+></app-counter-input> -->
+<!-- {{ngModelCounter.touched}} -->
+<!-- <mat-form-field class="example-full-width">
+    <mat-label>Search</mat-label>
+    <input
+		matInput
+		#ngModel="ngModel"
+		[(ngModel)]="searchValue"
+	>
+</mat-form-field> -->
+<!-- <input
+	matInput
+	[ngModel]="searchValue"
+	(ngModelChange)="searchValue = $event"
+> -->
+<!-- {{ngModel.touched}} -->
+
+<!-- <app-counter-input [formControl]="counterControl"></app-counter-input> -->
+<mat-form-field class="example-full-width">
+	<mat-label>Search</mat-label>
+	<input [formControl]="inputControl" />
+</mat-form-field>
+
 <div
 	*ngIf="products$ | async as products; else loaderTemplateRef"
 	class="scroll-container"
@@ -6,7 +34,7 @@
 	<ng-container
 		*appPagination="
 			let productsGroup of products
-				| filterByParam : searchValue : 'name';
+				| filterByParam : (searchValue$ | async) : 'name';
 			elementsSize: 4;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;

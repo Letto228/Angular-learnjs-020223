@@ -11,6 +11,9 @@ import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-para
 import { RouterModule } from '@angular/router';
 import { ProductsListRoutingModule } from './products-list-routing.module';
 import { FilterModule } from './filter/filter.module';
+import { CounterInputModule } from '../../shared/counter-input/counter-input.module';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -26,6 +29,10 @@ import { FilterModule } from './filter/filter.module';
 		RouterModule,
 		ProductsListRoutingModule,
 		FilterModule,
+		CounterInputModule,
+		MatInputModule,
+		ReactiveFormsModule,
+		FormsModule,
 	],
 	exports: [ProductsListComponent],
 })
