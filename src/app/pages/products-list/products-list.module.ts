@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-param.module';
 import { RouterModule } from '@angular/router';
 import { ProductsListRoutingModule } from './products-list-routing.module';
+import { FilterModule } from './filter/filter.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -24,6 +25,7 @@ import { ProductsListRoutingModule } from './products-list-routing.module';
 		FilterByParamModule,
 		RouterModule,
 		ProductsListRoutingModule,
+		FilterModule,
 	],
 	exports: [ProductsListComponent],
 })

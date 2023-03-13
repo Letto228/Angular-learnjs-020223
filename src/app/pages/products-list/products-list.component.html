@@ -1,3 +1,4 @@
+<app-filter [brands]="brands$ | async"></app-filter>
 <div
 	*ngIf="products$ | async as products; else loaderTemplateRef"
 	class="scroll-container"
