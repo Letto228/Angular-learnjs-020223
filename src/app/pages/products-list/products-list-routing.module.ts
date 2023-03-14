@@ -7,6 +7,15 @@ const routes: Routes = [
 		path: '',
 		component: ProductsListComponent,
 	},
+	{
+		path: 'categories/:categoryId',
+		component: ProductsListComponent,
+	},
+	{
+		path: 'categories',
+		redirectTo: '',
+		pathMatch: 'full',
+	},
 ];
 
 @NgModule({
