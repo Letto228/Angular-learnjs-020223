@@ -21,8 +21,8 @@ export class ProductsListComponent implements OnInit {
 
 	// searchProductName = 2;т
 	// searchProperty = 'feedbacksCount';
-	searchProductName = 'КР'; // для примера
-	searchProperty = 'name';
+	searchProductName = 3; // для примера
+	searchProperty: keyof IProduct = 'feedbacksCount';
 
 	// products: IProduct[] | undefined = undefined;
 
