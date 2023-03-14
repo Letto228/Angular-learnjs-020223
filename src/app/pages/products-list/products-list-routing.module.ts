@@ -11,6 +11,11 @@ const routes: Routes = [
 		path: 'categories/:categoryId',
 		component: ProductsListComponent,
 	},
+	{
+		path: 'categories',
+		redirectTo: '',
+		pathMatch: 'full',
+	},
 ];
 
 @NgModule({

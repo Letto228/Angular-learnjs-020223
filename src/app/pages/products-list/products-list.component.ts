@@ -13,7 +13,6 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 export class ProductsListComponent implements OnInit {
 	readonly products$ = this.activatedRoute.paramMap.pipe(
 		map(paramMap => paramMap.get('categoryId')),
-		filter(Boolean),
 		tap(categoryId => {
 			this.productsStoreService.loadProducts(categoryId);
 		}),
