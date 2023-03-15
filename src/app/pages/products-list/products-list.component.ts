@@ -1,10 +1,6 @@
-import { HttpBackend } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { IProduct } from '../../shared/products/product.interface';
-import { ProductsApiService } from '../../shared/products/products-api.service';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
-import { productsMock } from '../../shared/products/products.mock';
 import { toJson } from '../../shared/to-json/to-json';
 
 @Component({
@@ -23,8 +19,10 @@ export class ProductsListComponent implements OnInit {
 
 	readonly products$ = this.productsStoreService.products$;
 
-	searchProductName = '';
-	searchProperty = 'name';
+	// searchProductName = 2;т
+	// searchProperty = 'feedbacksCount';
+	searchProductName = 3; // для примера
+	searchProperty: keyof IProduct = 'feedbacksCount';
 
 	// products: IProduct[] | undefined = undefined;
 
