@@ -11,8 +11,6 @@ const routes: Routes = [
 	{
 		path: ':id',
 		component: ProductComponent,
-		// canActivateChild: [QuestionCanActivateGuard],
-		// canDeactivate: [QuestionCanDeactivateGuard],
 		children: [
 			{
 				path: 'type',

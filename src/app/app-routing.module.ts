@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { NoPreloading, PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotFoundModule } from './pages/not-found/not-found.module';
-import { QuestionCanActivateGuard } from './shared/test-guard/question-can-activate.guard';
-import { QuestionCanLoadGuard } from './shared/test-guard/question-can-load.guard';
 
 const routes: Routes = [
 	{
@@ -18,11 +16,6 @@ const routes: Routes = [
 	{
 		path: 'product',
 		loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
-		// canActivate: [QuestionCanActivateGuard],
-		// canLoad: [QuestionCanLoadGuard],
-		data: {
-			acceptedRoles: ['all'],
-		},
 	},
 	{
 		path: '**',
@@ -32,7 +25,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading }),
+		RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
 		NotFoundModule, // need move to lazy loading
 	],
 	exports: [RouterModule],
