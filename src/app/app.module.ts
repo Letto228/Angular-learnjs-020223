@@ -11,6 +11,16 @@ import { PopupHostModule } from './core/popup-host/popup-host.module';
 import { InsertShadowModule } from './shared/insert-shadow/insert-shadow.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { storeReducer } from './store/reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environments';
+
+const devtoolsInstruments = [];
+
+if (!environment.prod) {
+	devtoolsInstruments.push(StoreDevtoolsModule.instrument());
+}
 
 @NgModule({
 	declarations: [AppComponent],
@@ -24,6 +34,8 @@ import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
 		PopupHostModule,
 		InsertShadowModule,
 		HttpClientModule,
+		StoreModule.forRoot(storeReducer),
+		...devtoolsInstruments,
 	],
 	providers: [
 		{

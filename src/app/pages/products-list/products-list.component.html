@@ -1,9 +1,29 @@
-<!-- <app-filter [brands]="brands$ | async"></app-filter> -->
+<app-filter [brands]="brands$ | async"></app-filter>
 
-<mat-form-field class="example-full-width">
+<!-- <mat-form-field class="example-full-width">
 	<mat-label>Search</mat-label>
 	<input matInput [formControl]="inputControl" />
+</mat-form-field> -->
+
+<!-- {{inputControl.errors | json}} -->
+<!-- {{controlErrors$ | async | json}} -->
+
+<!-- <mat-form-field class="example-full-width">
+	<mat-label>Search</mat-label>
+	<input
+		#ngModel="ngModel"
+		matInput
+		appIsStringAsync
+		required
+		[minlength]="3"
+		[(ngModel)]="searchValue"
+		[ngModelOptions]="{
+			updateOn: 'blur'
+		}"
+	/>
 </mat-form-field>
+
+{{ngModel.errors| json}} -->
 
 <div
 	*ngIf="products$ | async as products; else loaderTemplateRef"

@@ -14,6 +14,7 @@ import { FilterModule } from './filter/filter.module';
 import { CounterInputModule } from '../../shared/counter-input/counter-input.module';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ValidatorsModule } from '../../shared/validators/directives/validators.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -33,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		MatInputModule,
 		ReactiveFormsModule,
 		FormsModule,
+		ValidatorsModule,
 	],
 	exports: [ProductsListComponent],
 })

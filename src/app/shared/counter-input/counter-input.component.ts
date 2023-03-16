@@ -43,7 +43,7 @@ export class CounterInputComponent implements ControlValueAccessor {
 
 	writeValue(newCounter: number) {
 		this.counter = newCounter;
-		console.log(newCounter);
+		// console.log(newCounter);
 
 		this.changeDetectorRef.markForCheck();
 	}

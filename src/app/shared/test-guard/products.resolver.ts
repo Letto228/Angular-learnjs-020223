@@ -14,11 +14,13 @@ export class ProductsResolver implements Resolve<IProduct[]> {
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProduct[]> {
 		this.productsStoreService.loadProducts(route.paramMap.get('subCategoryId'));
 
-		return this.productsStoreService.products$.pipe(
-			tap(value => {
-				console.log('ProductsResolver', value);
-			}),
-			filter(Boolean),
-		);
+		// return this.productsStoreService.products$.pipe(
+		// 	tap(value => {
+		// 		console.log('ProductsResolver', value);
+		// 	}),
+		// 	filter(Boolean),
+		// );
+
+		return of(productsMock);
 	}
 }
