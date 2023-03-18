@@ -11,15 +11,24 @@ import { productMock } from './shared/products/product.mock';
 })
 export class AppComponent {
 	readonly applicationConfig = applicationConfigMock;
-	isSidenavOpened = true;
+
 	readonly product = productMock;
 
-	toggleSidenavOpened() {
+	public isSidenavOpened = true;
+
+	public needViewPopup = false;
+
+	public toggleSidenavOpened() {
 		this.isSidenavOpened = !this.isSidenavOpened;
 	}
 
-	onClick(event: MouseEvent) {
+	public onClick(event: MouseEvent) {
 		event.stopPropagation();
+		this.isSidenavOpened = true;
 		console.log('Menu click', event);
+	}
+
+	public showPopUp(event: boolean) {
+		this.needViewPopup = event;
 	}
 }

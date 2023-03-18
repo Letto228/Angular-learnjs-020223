@@ -4,4 +4,17 @@
 	(menuClick)="toggleSidenavOpened()"
 ></app-header>
 
-<app-sidenav [products]="product" [(isOpened)]="isSidenavOpened"></app-sidenav>
+<app-sidenav
+	[products]="product"
+	[(isOpened)]="isSidenavOpened"
+	(buyProduct)="showPopUp($event)"
+></app-sidenav>
+
+<app-popup-host
+	[template]="needViewPopup ? template : undefined"
+></app-popup-host>
+
+<ng-template #template>
+	<h1>Buy a product</h1>
+	<mat-icon (click)="showPopUp(false)">highlight_off</mat-icon>
+</ng-template>

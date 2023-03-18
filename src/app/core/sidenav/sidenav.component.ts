@@ -13,7 +13,16 @@ export class SidenavComponent {
 
 	@Output() isOpenedChange = new EventEmitter<boolean>();
 
-	toggleSidenavOpened() {
+	@Output() buyProduct = new EventEmitter<boolean>();
+
+	public toggleSidenavOpened() {
 		this.isOpenedChange.emit(!this.isOpened);
+	}
+
+	public buyProducts(event: string | undefined) {
+		console.log(event);
+		if (event) {
+			this.buyProduct.emit(true);
+		}
 	}
 }
