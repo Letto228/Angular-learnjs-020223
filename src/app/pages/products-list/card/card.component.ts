@@ -1,7 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../../shared/products/product.interface';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CarouselModule } from '../../../shared/carousel/carousel.module';
 
 @Component({
+	standalone: true,
+	imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, CarouselModule],
 	selector: 'app-card',
 	templateUrl: './card.component.html',
 	styleUrls: ['./card.component.css'],

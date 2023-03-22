@@ -14,7 +14,9 @@ import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { storeReducer } from './store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environments';
+import { effects } from './store/effects';
 
 const devtoolsInstruments = [];
 
@@ -35,6 +37,7 @@ if (!environment.prod) {
 		InsertShadowModule,
 		HttpClientModule,
 		StoreModule.forRoot(storeReducer),
+		EffectsModule.forRoot(effects),
 		...devtoolsInstruments,
 	],
 	providers: [

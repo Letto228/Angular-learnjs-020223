@@ -25,6 +25,12 @@
 
 {{ngModel.errors| json}} -->
 
+{{ htmlSnippet }}
+<p [innerHTML]="htmlSnippet"></p>
+
+<a [href]="warningHref">Warning</a>
+<a [href]="safeHref">Safe</a>
+
 <div
 	*ngIf="products$ | async as products; else loaderTemplateRef"
 	class="scroll-container"

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsListComponent } from './products-list.component';
-import { CardModule } from './card/card.module';
+// import { CardModule } from './card/card.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollWithLoadingModule } from '../../shared/scroll-with-loading/scroll-with-loading.module';
 import { PaginationModule } from '../../shared/pagination/pagination.module';
@@ -15,12 +15,14 @@ import { CounterInputModule } from '../../shared/counter-input/counter-input.mod
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidatorsModule } from '../../shared/validators/directives/validators.module';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
 	declarations: [ProductsListComponent],
 	imports: [
 		CommonModule,
-		CardModule,
+		// CardModule,
+		CardComponent,
 		MatProgressSpinnerModule,
 		ScrollWithLoadingModule,
 		PaginationModule,
