@@ -1,9 +1,4 @@
-<app-filter
-	*ngIf="initialFilter$ | async as initialFilter"
-	[brands]="brands$ | async"
-	[initialFilter]="initialFilter"
-	(changeFilter)="onFilterChange($event)"
-></app-filter>
+<app-filter [brands]="brands$ | async"></app-filter>
 
 <!-- <mat-form-field class="example-full-width">
 	<mat-label>Search</mat-label>
