@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { debounceTime, distinctUntilChanged, map, Observable, startWith, switchMap, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Observable, startWith, switchMap, take, tap } from 'rxjs';
 import { BrandsService } from '../../shared/brands/brands.service';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
@@ -10,6 +10,10 @@ import { isStringAsyncValidator } from '../../shared/validators/is-string-async.
 import { isStringValidator } from '../../shared/validators/is-string.validator';
 import { currentProductSelector } from '../../store/products/products.selector';
 import { IState } from '../../store/reducer';
+import { IProductsFilter } from './filter/products-filter.interface';
+import { IProductsFilterQueryParams } from './filter/query-params/products-filter-query-params.interface';
+import { getQueryFromFilter } from './filter/query-params/get-query-from-filter';
+import { getFilterFromQuery } from './filter/query-params/get-filter-from-query';
 
 @Component({
 	selector: 'app-products-list',
@@ -38,6 +42,10 @@ export class ProductsListComponent {
 		}),
 		switchMap(() => this.brandsService.brands$),
 	);
+	readonly initialFilter$ = this.activatedRoute.queryParams.pipe(
+		take(1),
+		map(queryParams => getFilterFromQuery(queryParams as IProductsFilterQueryParams)),
+	);
 
 	searchValue = '';
 
@@ -61,10 +69,10 @@ export class ProductsListComponent {
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
 		private readonly activatedRoute: ActivatedRoute,
+		private readonly router: Router,
 		private readonly brandsService: BrandsService,
-		private readonly store$: Store<IState>,
-	) // private readonly changeDetectorRef: ChangeDetectorRef,
-	{
+		private readonly store$: Store<IState>, // private readonly changeDetectorRef: ChangeDetectorRef,
+	) {
 		// setTimeout(() => {
 		// 	this.inputControl.enable();
 		// }, 2000);
@@ -77,6 +85,10 @@ export class ProductsListComponent {
 
 	onCounterChange(value: number) {
 		// console.log('onCounterChange', value);
+	}
+
+	onFilterChange(filter: IProductsFilter) {
+		this.router.navigate([], { relativeTo: this.activatedRoute, queryParams: getQueryFromFilter(filter) });
 	}
 
 	private isStringAsyncValidator(control: AbstractControl): Observable<ValidationErrors | null> {
